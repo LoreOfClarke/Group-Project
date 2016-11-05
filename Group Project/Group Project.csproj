@@ -56,11 +56,11 @@
     <Compile Include="Database\LeagueList.cs" />
     <Compile Include="Database\TeamList.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="PublicView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PublicView.Designer.cs">
+      <DependentUpon>PublicView.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagerView.cs">
       <SubType>Form</SubType>
@@ -73,8 +73,8 @@
     <EmbeddedResource Include="AdminView.resx">
       <DependentUpon>AdminView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="PublicView.resx">
+      <DependentUpon>PublicView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerView.resx">
       <DependentUpon>ManagerView.cs</DependentUpon>
