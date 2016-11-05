@@ -13,7 +13,6 @@ namespace Group_Project.Database
         public static List<Classes.Team> Fill(OleDbConnection DBConnection, int League)
         {
             List<Classes.Team> TeamList = new List<Classes.Team>();
-            Classes.Team Team = new Classes.Team();
             try
             {
                 OleDbCommand command;
@@ -22,14 +21,13 @@ namespace Group_Project.Database
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    Classes.Team Team = new Classes.Team();
                     Team.TeamID = Int32.Parse(reader[0].ToString());
-                    
+                    MessageBox.Show(reader[1].ToString());
                     Team.TeamName = reader[1].ToString();
                     Team.Stadium = reader[2].ToString();
                     TeamList.Add(Team);
                 }
-                MessageBox.Show(TeamList[0].TeamName.ToString());
-                MessageBox.Show(TeamList[1].TeamName.ToString());
             }
             catch (OleDbException exception)
             {

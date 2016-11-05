@@ -3,10 +3,10 @@ using System.Windows.Forms;
 
 namespace Group_Project
 {
-    class ColourChange
+    static class ColourChange
     {
          //setting the default colours
-            private Color BackgroundColour
+            private static Color BackgroundColour
             {
                 get
                 {
@@ -24,7 +24,7 @@ namespace Group_Project
                     }
                 }
             }
-            private Color TextColour
+            private static Color TextColour
             {
                 get
                 {
@@ -42,7 +42,7 @@ namespace Group_Project
                     }
                 }
             }
-            private Color TextboxBackColour
+            private static Color TextboxBackColour
             {
                 get
                 {
@@ -60,7 +60,7 @@ namespace Group_Project
                     }
                 }
             }
-            private Color HighlightColour
+            private static Color HighlightColour
             {
                 get
                 {
@@ -78,7 +78,7 @@ namespace Group_Project
                     }
                 }
             }
-            private Color HighlightTextColour
+            private static Color HighlightTextColour
             {
                 get
                 {
@@ -98,30 +98,30 @@ namespace Group_Project
             }
 
             //applying the colours to controls
-            public void ColourLabel(Label lbl)
+            public static void ColourLabel(Label lbl)
             {
                 lbl.BackColor = BackgroundColour;
                 lbl.ForeColor = TextColour;
             }
-            public void ColourTextbox(TextBox txt)
+            public static void ColourTextbox(TextBox txt)
             {
                 txt.BackColor = TextboxBackColour;
                 txt.ForeColor = TextColour;
             }
-            public void ColourNumericUD(NumericUpDown nud)
+            public static void ColourNumericUD(NumericUpDown nud)
             {
                 nud.BackColor = BackgroundColour;
                 nud.ForeColor = TextColour;
             }
-            public void ColourPanel(Panel pnl)
+            public static void ColourPanel(Panel pnl)
             {
                 pnl.BackColor = BackgroundColour;
             }
-            public void ColourForm(Form frm)
+            public static void ColourForm(Form frm)
             {
                 frm.BackColor = BackgroundColour;
             }
-            public void ColourDGV(DataGridView dgv)
+            public static void ColourDGV(DataGridView dgv)
             {
                 dgv.DefaultCellStyle.BackColor = TextboxBackColour;
                 dgv.DefaultCellStyle.ForeColor = TextColour;

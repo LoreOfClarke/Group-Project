@@ -43,15 +43,9 @@ namespace Group_Project
         private void FillTeams(OleDbConnection dbconn ,int League)
         {
             List<Classes.Team> TeamList = new List<Classes.Team>();
-            try
-            {
-                TeamList = Database.TeamList.Fill(dbconn, League);
-            }
-            catch { }
-            MessageBox.Show(TeamList.Count.ToString());
+            TeamList = Database.TeamList.Fill(dbconn, League);
             foreach (Classes.Team tm in TeamList)
             {
-                MessageBox.Show(tm.TeamID.ToString());
                 tscbTeam.Items.Add(tm.TeamName);
             }
             tscbTeam.SelectedIndex = 0;
