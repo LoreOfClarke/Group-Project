@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Group_Project.Classes
+﻿namespace Group_Project.Classes
 {
-    class Team
+    public class Team
     {
         public int TeamID;
         public string TeamName;
         public string Stadium;
+        public int GamesWon;
+        public int GamesLost;
+        public int GamesDrawn;
+        public int Points
+        {
+            get { return 3 * GamesWon + GamesDrawn; }
+        }
+        public int Matches
+        {
+            get { return GamesWon + GamesDrawn + GamesLost; }
+        }
+        public int GoalsFor;
+        public int GoalsAgainst;
     }
 }

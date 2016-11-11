@@ -13,6 +13,8 @@ namespace Group_Project
 {
     public partial class FrontPage : Form
     {
+        private List<Classes.League> LeagueList = new List<Classes.League>();
+        private List<Classes.Team> TeamList = new List<Classes.Team>();
         public FrontPage()
         {
             InitializeComponent();
@@ -30,7 +32,6 @@ namespace Group_Project
 
         private void FillLeagues(OleDbConnection dbconn)
         {
-            List<Classes.League> LeagueList = new List<Classes.League>();
             LeagueList = Database.LeagueList.Fill(dbconn);
             foreach (Classes.League lg in LeagueList)
             {
@@ -42,13 +43,20 @@ namespace Group_Project
 
         private void FillTeams(OleDbConnection dbconn ,int League)
         {
-            List<Classes.Team> TeamList = new List<Classes.Team>();
             TeamList = Database.TeamList.Fill(dbconn, League);
             foreach (Classes.Team tm in TeamList)
             {
                 tscbTeam.Items.Add(tm.TeamName);
             }
             tscbTeam.SelectedIndex = 0;
+            update();
+        }
+        #endregion
+
+        #region Global Updates
+        public void update()
+        {
+            leagueView1.update(TeamList);
         }
         #endregion
     }

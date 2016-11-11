@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.pnlTitle = new System.Windows.Forms.Panel();
-            this.pnlMain = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlMain = new System.Windows.Forms.Panel();
             this.dgvLeaguePositions = new System.Windows.Forms.DataGridView();
             this.pnlTitle.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -46,6 +46,17 @@
             this.pnlTitle.Size = new System.Drawing.Size(786, 100);
             this.pnlTitle.TabIndex = 0;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Verdana", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(276, 36);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(240, 29);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "League Positions";
+            // 
             // pnlMain
             // 
             this.pnlMain.Controls.Add(this.dgvLeaguePositions);
@@ -55,17 +66,6 @@
             this.pnlMain.Padding = new System.Windows.Forms.Padding(20);
             this.pnlMain.Size = new System.Drawing.Size(786, 345);
             this.pnlMain.TabIndex = 1;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Verdana", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(260, 35);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(240, 29);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "League Positions";
             // 
             // dgvLeaguePositions
             // 

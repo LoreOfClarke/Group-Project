@@ -51,6 +51,7 @@
       <DependentUpon>AdminView.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\League.cs" />
+    <Compile Include="Classes\LeagueTableDisplay.cs" />
     <Compile Include="Classes\Team.cs" />
     <Compile Include="ColourChange.cs" />
     <Compile Include="Database\LeagueList.cs" />
