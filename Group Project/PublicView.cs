@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
@@ -15,6 +10,8 @@ namespace Group_Project
     {
         private List<Classes.League> LeagueList = new List<Classes.League>();
         private List<Classes.Team> TeamList = new List<Classes.Team>();
+        private List<Classes.Player> PlayerList = new List<Classes.Player>();
+        private List<Classes.Fixture> FixtureList = new List<Classes.Fixture>();
         public FrontPage()
         {
             InitializeComponent();
@@ -24,10 +21,9 @@ namespace Group_Project
 
         private void FrontPage_Load(object sender, EventArgs e)
         {
-            Database.DatabaseConnection DatabaseConnection = new Database.DatabaseConnection();
-            DatabaseConnection.dbConnect();
-            FillLeagues(DatabaseConnection.DBConnection);
-            DatabaseConnection.dbDisconnect();
+            Database.DatabaseConnection.dbConnect();
+            FillLeagues(Database.DatabaseConnection.DBConnection);
+            Database.DatabaseConnection.dbDisconnect();
         }
 
         private void FillLeagues(OleDbConnection dbconn)
@@ -38,7 +34,6 @@ namespace Group_Project
                 tscbLeague.Items.Add(lg.LeagueName);
             }
             tscbLeague.SelectedIndex = 0;
-            FillTeams(dbconn,LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
         }
 
         private void FillTeams(OleDbConnection dbconn ,int League)
@@ -49,15 +44,48 @@ namespace Group_Project
                 tscbTeam.Items.Add(tm.TeamName);
             }
             tscbTeam.SelectedIndex = 0;
-            update();
+        }
+
+        private void FillPlayers(OleDbConnection dbconn, int Team)
+        {
+            PlayerList = Database.TeamPlayers.Fill(dbconn, Team);
+        }
+
+        private void FillFixtures(OleDbConnection dbconn,int League, int Team)
+        {
+            FixtureList = Database.FixtureList.Fill(dbconn, League, Team);
         }
         #endregion
 
         #region Global Updates
-        public void update()
+        public void updateLeague()
         {
             leagueView1.update(TeamList);
         }
+
+        public void updateTeams()
+        {
+            teamView1.update(PlayerList);
+            fixtureView1.update(FixtureList);
+        }
+
         #endregion
+
+        private void tscbLeague_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Database.DatabaseConnection.dbConnect();
+            FillTeams(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            Database.DatabaseConnection.dbDisconnect();
+            updateLeague();
+        }
+
+        private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Database.DatabaseConnection.dbConnect();
+            FillPlayers(Database.DatabaseConnection.DBConnection, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            FillFixtures(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            Database.DatabaseConnection.dbDisconnect();
+            updateTeams();
+        }
     }
 }

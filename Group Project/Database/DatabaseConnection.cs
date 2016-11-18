@@ -3,32 +3,25 @@ using System.Windows.Forms;
 
 namespace Group_Project.Database
 {
-    class DatabaseConnection
+    static class DatabaseConnection
     {
-        private string dbProvider = @"Provider = Microsoft.ACE.OLEDB.12.0;";
-        private string dbSource = @"Data Source = footballfixtures.accdb";
-        public OleDbConnection DBConnection = new OleDbConnection();
+        private static string dbProvider = @"Provider = Microsoft.ACE.OLEDB.12.0;";
+        private static string dbSource = @"Data Source = footballfixtures.accdb";
+        public static OleDbConnection DBConnection = new OleDbConnection(dbProvider + dbSource);
  
 
-        public void dbConnect()
+        public static void dbConnect()
         {
-            try
-            {
-                DBConnection.ConnectionString = dbProvider + dbSource;
-                DBConnection.Open();
-            }
-            catch (OleDbException exception)
-            {
-                MessageBox.Show(exception.Message, "OLEDB Exception");
-            }
+            if (DBConnection.State == System.Data.ConnectionState.Closed)
+            { DBConnection.Open(); }
         }
 
-        public void dbDisconnect()
+        public static void dbDisconnect()
         {
-            DBConnection.Close();
+            if (DBConnection.State == System.Data.ConnectionState.Closed) { DBConnection.Close(); }
         }
 
-        public void dbTest()
+        public static void dbTest()
         {
             try
             {

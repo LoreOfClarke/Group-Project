@@ -10,13 +10,13 @@ namespace Group_Project.Database
         public static List<Classes.League> Fill(OleDbConnection DBConnection)
         {
             List<Classes.League> LeagueList = new List<Classes.League>();
-            Classes.League League = new Classes.League();
             try
             {
                 OleDbCommand command = new OleDbCommand("Select * from League;", DBConnection);
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    Classes.League League = new Classes.League();
                     League.LeagueId = Int32.Parse(reader[0].ToString());
                     League.LeagueName = reader[1].ToString();
                     League.Capacity = Int32.Parse(reader[2].ToString());

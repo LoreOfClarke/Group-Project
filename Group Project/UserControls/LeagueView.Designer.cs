@@ -69,10 +69,14 @@
             // 
             // dgvLeaguePositions
             // 
+            this.dgvLeaguePositions.AllowUserToAddRows = false;
+            this.dgvLeaguePositions.AllowUserToDeleteRows = false;
             this.dgvLeaguePositions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLeaguePositions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLeaguePositions.Location = new System.Drawing.Point(20, 20);
             this.dgvLeaguePositions.Name = "dgvLeaguePositions";
+            this.dgvLeaguePositions.ReadOnly = true;
+            this.dgvLeaguePositions.RowHeadersVisible = false;
             this.dgvLeaguePositions.Size = new System.Drawing.Size(746, 305);
             this.dgvLeaguePositions.TabIndex = 0;
             // 

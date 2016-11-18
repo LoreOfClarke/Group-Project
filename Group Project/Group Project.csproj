@@ -50,13 +50,20 @@
     <Compile Include="AdminView.Designer.cs">
       <DependentUpon>AdminView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Fixture.cs" />
+    <Compile Include="Classes\FixtureTableDisplay.cs" />
     <Compile Include="Classes\League.cs" />
     <Compile Include="Classes\LeagueTableDisplay.cs" />
+    <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\PlayerDisplayTable.cs" />
+    <Compile Include="Classes\ResultsTableDisplay.cs" />
     <Compile Include="Classes\Team.cs" />
     <Compile Include="ColourChange.cs" />
+    <Compile Include="Database\FixtureList.cs" />
     <Compile Include="Database\LeagueList.cs" />
     <Compile Include="Database\TeamList.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
+    <Compile Include="Database\TeamPlayers.cs" />
     <Compile Include="PublicView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,11 +78,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicViewUserControls\LeagueView.cs">
+    <Compile Include="UserControls\FixtureView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PublicViewUserControls\LeagueView.Designer.cs">
+    <Compile Include="UserControls\FixtureView.Designer.cs">
+      <DependentUpon>FixtureView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LeagueView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LeagueView.Designer.cs">
       <DependentUpon>LeagueView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TeamView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TeamView.Designer.cs">
+      <DependentUpon>TeamView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AdminView.resx">
       <DependentUpon>AdminView.cs</DependentUpon>
@@ -95,8 +114,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PublicViewUserControls\LeagueView.resx">
+    <EmbeddedResource Include="UserControls\FixtureView.resx">
+      <DependentUpon>FixtureView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LeagueView.resx">
       <DependentUpon>LeagueView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TeamView.resx">
+      <DependentUpon>TeamView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
