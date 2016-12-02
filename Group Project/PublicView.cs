@@ -53,7 +53,33 @@ namespace Group_Project
 
         private void FillFixtures(OleDbConnection dbconn,int League, int Team)
         {
-            FixtureList = Database.FixtureList.Fill(dbconn, League, Team);
+            FixtureList = Database.FixtureList.FillLeague(dbconn, League, Team);
+        }
+        #endregion
+
+        #region Object Events
+        private void tscbLeague_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Database.DatabaseConnection.dbConnect();
+            FillTeams(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            Database.DatabaseConnection.dbDisconnect();
+            updateLeague();
+        }
+
+        private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Database.DatabaseConnection.dbConnect();
+            FillPlayers(Database.DatabaseConnection.DBConnection, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            FillFixtures(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            Database.DatabaseConnection.dbDisconnect();
+            updateTeams();
+        }
+
+        private void tsmiLogin_Click(object sender, EventArgs e)
+        {
+            frmLogin login = new frmLogin();
+            login.Owner = this;
+            login.ShowDialog();
         }
         #endregion
 
@@ -71,21 +97,6 @@ namespace Group_Project
 
         #endregion
 
-        private void tscbLeague_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Database.DatabaseConnection.dbConnect();
-            FillTeams(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
-            Database.DatabaseConnection.dbDisconnect();
-            updateLeague();
-        }
 
-        private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Database.DatabaseConnection.dbConnect();
-            FillPlayers(Database.DatabaseConnection.DBConnection, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
-            FillFixtures(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
-            Database.DatabaseConnection.dbDisconnect();
-            updateTeams();
-        }
     }
 }
