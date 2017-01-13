@@ -32,6 +32,7 @@ namespace Group_Project
             PlayerList = Database.TeamPlayers.Fill(Database.DatabaseConnection.DBConnection, TeamID);
             FixtureList = Database.FixtureList.Fill(Database.DatabaseConnection.DBConnection, TeamID);
             Database.DatabaseConnection.dbDisconnect();
+            updateLeague();
         }
 
 
@@ -67,11 +68,17 @@ namespace Group_Project
         public void updateLeague()
         {
             leagueView1.update(TeamList);
+            teamView1.update(PlayerList);
             fixtureView1.update(FixtureList);
         }
         #endregion
 
         #region OnClose
+        private void tsmiLogin_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void ManagerView_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Owner.Show();
