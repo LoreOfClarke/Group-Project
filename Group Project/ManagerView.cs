@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
@@ -13,11 +8,14 @@ namespace Group_Project
 {
     public partial class ManagerView : Form
     {
+        
         public int TeamID;
         private List<Classes.League> LeagueList = new List<Classes.League>();
         private List<Classes.Team> TeamList = new List<Classes.Team>();
         private List<Classes.Player> PlayerList = new List<Classes.Player>();
         private List<Classes.Fixture> FixtureList = new List<Classes.Fixture>();
+
+
 
         #region Initial Setup
         public ManagerView()
@@ -27,11 +25,9 @@ namespace Group_Project
 
         private void ManagerView_Load(object sender, EventArgs e)
         {
-            Database.DatabaseConnection.dbConnect();
-            FillTeamLeagues(Database.DatabaseConnection.DBConnection);
-            PlayerList = Database.TeamPlayers.Fill(Database.DatabaseConnection.DBConnection, TeamID);
-            FixtureList = Database.FixtureList.Fill(Database.DatabaseConnection.DBConnection, TeamID);
-            Database.DatabaseConnection.dbDisconnect();
+            teamView1.UpdateView += new EventHandler(UpdateView);
+            teamView1.TeamID = TeamID;
+            GetData();
             updateLeague();
         }
 
@@ -50,8 +46,17 @@ namespace Group_Project
         {
             TeamList = Database.TeamList.Fill(dbconn, League);
         }
-        
-        
+
+
+        #endregion
+
+        #region UpdateHanding
+
+        protected void UpdateView(object sender, EventArgs e)
+        {
+            GetData();
+            updateLeague();
+        }
         #endregion
 
         #region Object Events
@@ -65,10 +70,19 @@ namespace Group_Project
         #endregion
 
         #region Global Updates
-        public void updateLeague()
+        protected void GetData()
+        {
+            Database.DatabaseConnection.dbConnect();
+            FillTeamLeagues(Database.DatabaseConnection.DBConnection);
+            PlayerList = Database.TeamPlayers.Fill(TeamID);
+            FixtureList = Database.FixtureList.Fill(Database.DatabaseConnection.DBConnection, TeamID);
+            Database.DatabaseConnection.dbDisconnect();
+        }
+
+        protected void updateLeague()
         {
             leagueView1.update(TeamList);
-            teamView1.update(PlayerList);
+            teamView1.update(PlayerList,true);
             fixtureView1.update(FixtureList);
         }
         #endregion

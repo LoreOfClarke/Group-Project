@@ -46,9 +46,9 @@ namespace Group_Project
             tscbTeam.SelectedIndex = 0;
         }
 
-        private void FillPlayers(OleDbConnection dbconn, int Team)
+        private void FillPlayers(int Team)
         {
-            PlayerList = Database.TeamPlayers.Fill(dbconn, Team);
+            PlayerList = Database.TeamPlayers.Fill(Team);
         }
 
         private void FillFixtures(OleDbConnection dbconn,int League, int Team)
@@ -69,7 +69,7 @@ namespace Group_Project
         private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
             Database.DatabaseConnection.dbConnect();
-            FillPlayers(Database.DatabaseConnection.DBConnection, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            FillPlayers(TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
             FillFixtures(Database.DatabaseConnection.DBConnection, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
             Database.DatabaseConnection.dbDisconnect();
             updateTeams();
@@ -91,7 +91,7 @@ namespace Group_Project
 
         public void updateTeams()
         {
-            teamView1.update(PlayerList);
+            teamView1.update(PlayerList,false);
             fixtureView1.update(FixtureList);
         }
 

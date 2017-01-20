@@ -89,6 +89,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyEventArgs.cs" />
     <Compile Include="PublicView.cs">
       <SubType>Form</SubType>
     </Compile>

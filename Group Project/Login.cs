@@ -26,5 +26,14 @@ namespace Group_Project
             this.Owner.Hide();
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AdminView AView = new AdminView();
+            AView.Owner = this.Owner;
+            AView.Show();
+            this.Owner.Hide();
+            this.Close();
+        }
     }
 }

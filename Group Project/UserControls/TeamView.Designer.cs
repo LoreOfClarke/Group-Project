@@ -42,10 +42,21 @@
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.txtForname = new System.Windows.Forms.TextBox();
             this.lblPlayerInformation = new System.Windows.Forms.Label();
+            this.pnlCommands = new System.Windows.Forms.Panel();
+            this.cmdDelete = new System.Windows.Forms.Button();
+            this.cmdUpdate = new System.Windows.Forms.Button();
+            this.cmdAdd = new System.Windows.Forms.Button();
+            this.pnlEdit = new System.Windows.Forms.Panel();
+            this.pnlStandard = new System.Windows.Forms.Panel();
+            this.cmdAccept = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeamDetails)).BeginInit();
             this.pnlPlayerInformation.SuspendLayout();
+            this.pnlCommands.SuspendLayout();
+            this.pnlEdit.SuspendLayout();
+            this.pnlStandard.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -107,7 +118,7 @@
             this.pnlPlayerInformation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPlayerInformation.Location = new System.Drawing.Point(498, 96);
             this.pnlPlayerInformation.Name = "pnlPlayerInformation";
-            this.pnlPlayerInformation.Size = new System.Drawing.Size(488, 426);
+            this.pnlPlayerInformation.Size = new System.Drawing.Size(488, 304);
             this.pnlPlayerInformation.TabIndex = 26;
             // 
             // dtpDateOfBirth
@@ -191,11 +202,94 @@
             this.lblPlayerInformation.TabIndex = 0;
             this.lblPlayerInformation.Text = "Player Information";
             // 
+            // pnlCommands
+            // 
+            this.pnlCommands.Controls.Add(this.pnlEdit);
+            this.pnlCommands.Controls.Add(this.pnlStandard);
+            this.pnlCommands.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlCommands.Location = new System.Drawing.Point(498, 400);
+            this.pnlCommands.Name = "pnlCommands";
+            this.pnlCommands.Size = new System.Drawing.Size(488, 122);
+            this.pnlCommands.TabIndex = 11;
+            // 
+            // cmdDelete
+            // 
+            this.cmdDelete.Location = new System.Drawing.Point(350, 27);
+            this.cmdDelete.Name = "cmdDelete";
+            this.cmdDelete.Size = new System.Drawing.Size(100, 69);
+            this.cmdDelete.TabIndex = 2;
+            this.cmdDelete.Text = "Delete Player";
+            this.cmdDelete.UseVisualStyleBackColor = true;
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
+            // 
+            // cmdUpdate
+            // 
+            this.cmdUpdate.Location = new System.Drawing.Point(194, 27);
+            this.cmdUpdate.Name = "cmdUpdate";
+            this.cmdUpdate.Size = new System.Drawing.Size(100, 69);
+            this.cmdUpdate.TabIndex = 1;
+            this.cmdUpdate.Text = "Update This Player\'s Details";
+            this.cmdUpdate.UseVisualStyleBackColor = true;
+            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
+            // 
+            // cmdAdd
+            // 
+            this.cmdAdd.Location = new System.Drawing.Point(38, 27);
+            this.cmdAdd.Name = "cmdAdd";
+            this.cmdAdd.Size = new System.Drawing.Size(100, 69);
+            this.cmdAdd.TabIndex = 0;
+            this.cmdAdd.Text = "Add New Team Member";
+            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            // 
+            // pnlEdit
+            // 
+            this.pnlEdit.Controls.Add(this.cmdCancel);
+            this.pnlEdit.Controls.Add(this.cmdAccept);
+            this.pnlEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlEdit.Location = new System.Drawing.Point(0, 0);
+            this.pnlEdit.Name = "pnlEdit";
+            this.pnlEdit.Size = new System.Drawing.Size(488, 122);
+            this.pnlEdit.TabIndex = 3;
+            this.pnlEdit.Visible = false;
+            // 
+            // pnlStandard
+            // 
+            this.pnlStandard.Controls.Add(this.cmdDelete);
+            this.pnlStandard.Controls.Add(this.cmdUpdate);
+            this.pnlStandard.Controls.Add(this.cmdAdd);
+            this.pnlStandard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlStandard.Location = new System.Drawing.Point(0, 0);
+            this.pnlStandard.Name = "pnlStandard";
+            this.pnlStandard.Size = new System.Drawing.Size(488, 122);
+            this.pnlStandard.TabIndex = 4;
+            // 
+            // cmdAccept
+            // 
+            this.cmdAccept.Location = new System.Drawing.Point(95, 27);
+            this.cmdAccept.Name = "cmdAccept";
+            this.cmdAccept.Size = new System.Drawing.Size(100, 69);
+            this.cmdAccept.TabIndex = 3;
+            this.cmdAccept.Text = "Accept";
+            this.cmdAccept.UseVisualStyleBackColor = true;
+            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
+            // 
+            // cmdCancel
+            // 
+            this.cmdCancel.Location = new System.Drawing.Point(294, 27);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(100, 69);
+            this.cmdCancel.TabIndex = 4;
+            this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            // 
             // TeamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlPlayerInformation);
+            this.Controls.Add(this.pnlCommands);
             this.Controls.Add(this.pnlPlayers);
             this.Controls.Add(this.pnlHeader);
             this.Name = "TeamView";
@@ -206,6 +300,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeamDetails)).EndInit();
             this.pnlPlayerInformation.ResumeLayout(false);
             this.pnlPlayerInformation.PerformLayout();
+            this.pnlCommands.ResumeLayout(false);
+            this.pnlEdit.ResumeLayout(false);
+            this.pnlStandard.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -225,5 +322,13 @@
         private System.Windows.Forms.TextBox txtForname;
         private System.Windows.Forms.Label lblPlayerInformation;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
+        private System.Windows.Forms.Panel pnlCommands;
+        private System.Windows.Forms.Button cmdDelete;
+        private System.Windows.Forms.Button cmdUpdate;
+        private System.Windows.Forms.Button cmdAdd;
+        private System.Windows.Forms.Panel pnlEdit;
+        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdAccept;
+        private System.Windows.Forms.Panel pnlStandard;
     }
 }
