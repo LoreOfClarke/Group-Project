@@ -54,16 +54,11 @@ namespace Group_Project.Database
             command.Parameters.Add(new OleDbParameter("@varTeamID", TeamID));
             command.ExecuteNonQuery();
         }
-        /// <summary>
-        /// SUSPICIOUS FAILURE
-        /// </summary>
-        /// <param name="PlayerID"></param>
-        /// <param name="TeamID"></param>
-        /// <param name="Active"></param>
+
         public static void SetAssign(int PlayerID, int TeamID, int Active)
         {
             OleDbCommand command;
-            command = new OleDbCommand("UPDATE Staff StaffEmployed SET Active = @varActive WHERE StaffID = @varPlayerID AND TeamID = @varTeamID ", DatabaseConnection.DBConnection);
+            command = new OleDbCommand("UPDATE StaffEmployed SET Active = @varActive WHERE StaffID = @varPlayerID AND TeamID = @varTeamID ", DatabaseConnection.DBConnection);
             command.Parameters.Add(new OleDbParameter("@varActive", Active.ToString()));
             command.Parameters.Add(new OleDbParameter("@varPlayerID", PlayerID.ToString()));
             command.Parameters.Add(new OleDbParameter("@varTeamID", TeamID.ToString()));

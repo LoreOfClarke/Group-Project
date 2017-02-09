@@ -34,25 +34,6 @@ namespace Group_Project.UserControls
                 
         }
 
-        public void colourChange()
-        {
-            ColourChange.ColourPanel(pnlHeader);
-            ColourChange.ColourPanel(pnlPlayerInformation);
-            ColourChange.ColourPanel(pnlPlayers);
-            ColourChange.ColourPanel(pnlCommands);
-            ColourChange.ColourPanel(pnlStandard);
-            ColourChange.ColourPanel(pnlEdit);
-            ColourChange.ColourLabel(lblTeamDetails);
-            ColourChange.ColourLabel(lblPlayerInformation);
-            ColourChange.ColourLabel(lblForname);
-            ColourChange.ColourLabel(lblSurname);
-            ColourChange.ColourLabel(lblDoB);
-            ColourChange.ColourLabel(lblRole);
-            ColourChange.ColourTextbox(txtForname);
-            ColourChange.ColourTextbox(txtSurname);
-            ColourChange.ColourTextbox(txtRole);
-
-        }
         #endregion
 
         #region Object Events
@@ -96,9 +77,11 @@ namespace Group_Project.UserControls
         {
             DetailsAccess(false);
             Database.DatabaseConnection.dbConnect();
+            EditingPlayer = Database.TeamPlayers.FindPlayerID(txtForname.Text, txtSurname.Text, dtpDateOfBirth.Value, txtRole.Text);
             Database.TeamPlayers.SetAssign(EditingPlayer, TeamID, 0);
             Database.DatabaseConnection.dbDisconnect();
             UpdateParent(this, e);
+            DetailsAccess(true);
         }
 
         private void cmdAccept_Click(object sender, EventArgs e)
@@ -154,6 +137,32 @@ namespace Group_Project.UserControls
             }
             pnlEdit.Visible = !access;
             pnlStandard.Visible = access;
+        }
+
+        public void colourChange()
+        {
+            ColourChange.ColourPanel(pnlHeader);
+            ColourChange.ColourPanel(pnlPlayerInformation);
+            ColourChange.ColourPanel(pnlPlayers);
+            ColourChange.ColourPanel(pnlCommands);
+            ColourChange.ColourPanel(pnlStandard);
+            ColourChange.ColourPanel(pnlEdit);
+            ColourChange.ColourDGV(dgvTeamDetails);
+            ColourChange.ColourLabel(lblTeamDetails);
+            ColourChange.ColourLabel(lblPlayerInformation);
+            ColourChange.ColourLabel(lblForname);
+            ColourChange.ColourLabel(lblSurname);
+            ColourChange.ColourLabel(lblDoB);
+            ColourChange.ColourLabel(lblRole);
+            ColourChange.ColourTextbox(txtForname);
+            ColourChange.ColourTextbox(txtSurname);
+            ColourChange.ColourTextbox(txtRole);
+            ColourChange.ColourDTP(dtpDateOfBirth);
+            ColourChange.ColourButton(cmdAccept);
+            ColourChange.ColourButton(cmdCancel);
+            ColourChange.ColourButton(cmdAdd);
+            ColourChange.ColourButton(cmdUpdate);
+            ColourChange.ColourButton(cmdDelete);
         }
         #endregion
 

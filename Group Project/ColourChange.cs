@@ -6,7 +6,7 @@ namespace Group_Project
     static class ColourChange
     {
          //setting the default colours
-            private static Color BackgroundColour
+        private static Color BackgroundColour
             {
                 get
                 {
@@ -24,7 +24,7 @@ namespace Group_Project
                     }
                 }
             }
-            private static Color TextColour
+        private static Color TextColour
             {
                 get
                 {
@@ -42,7 +42,7 @@ namespace Group_Project
                     }
                 }
             }
-            private static Color TextboxBackColour
+        private static Color TextboxBackColour
             {
                 get
                 {
@@ -60,7 +60,7 @@ namespace Group_Project
                     }
                 }
             }
-            private static Color HighlightColour
+        private static Color HighlightColour
             {
                 get
                 {
@@ -78,7 +78,7 @@ namespace Group_Project
                     }
                 }
             }
-            private static Color HighlightTextColour
+        private static Color HighlightTextColour
             {
                 get
                 {
@@ -98,30 +98,34 @@ namespace Group_Project
             }
 
             //applying the colours to controls
-            public static void ColourLabel(Label lbl)
+        public static void ColourLabel(Label lbl)
             {
                 lbl.BackColor = BackgroundColour;
                 lbl.ForeColor = TextColour;
             }
-            public static void ColourTextbox(TextBox txt)
+        public static void ColourTextbox(TextBox txt)
             {
                 txt.BackColor = TextboxBackColour;
                 txt.ForeColor = TextColour;
             }
-            public static void ColourNumericUD(NumericUpDown nud)
+        public static void ColourNumericUD(NumericUpDown nud)
             {
                 nud.BackColor = BackgroundColour;
                 nud.ForeColor = TextColour;
             }
-            public static void ColourPanel(Panel pnl)
-            {
-                pnl.BackColor = BackgroundColour;
-            }
-            public static void ColourForm(Form frm)
+        public static void ColourPanel(Panel pnl)
+        {
+            pnl.BackColor = BackgroundColour;
+        }
+        public static void ColourSplitPanel(SplitContainer spnl)
+        {
+            spnl.BackColor = BackgroundColour;
+        }
+        public static void ColourForm(Form frm)
             {
                 frm.BackColor = BackgroundColour;
             }
-            public static void ColourDGV(DataGridView dgv)
+        public static void ColourDGV(DataGridView dgv)
             {
                 dgv.DefaultCellStyle.BackColor = TextboxBackColour;
                 dgv.DefaultCellStyle.ForeColor = TextColour;
@@ -130,6 +134,39 @@ namespace Group_Project
                 dgv.RowHeadersDefaultCellStyle.BackColor = HighlightColour;
                 dgv.RowHeadersDefaultCellStyle.ForeColor = HighlightTextColour;
             }
-        
-    }
+        public static void ColourDTP(DateTimePicker dtp)
+        {
+            dtp.CalendarMonthBackground = TextboxBackColour;
+            dtp.CalendarForeColor = TextColour;
+            dtp.CalendarTitleBackColor = TextboxBackColour;
+            dtp.CalendarTitleForeColor = TextColour;
+            dtp.CalendarTrailingForeColor = HighlightTextColour;
+        }
+        public static void ColourMenuStrip(MenuStrip mnu)
+        {
+            mnu.BackColor = BackgroundColour;
+            mnu.ForeColor = TextColour;
+            ToolStripComboBox tbx = new ToolStripComboBox();
+            foreach (object mnuitem in mnu.Items)
+            {
+                if (mnuitem.GetType() == tbx.GetType())
+                {
+                    tbx = (ToolStripComboBox)mnuitem;
+                    tbx.BackColor = TextboxBackColour;
+                    tbx.ForeColor = TextColour;
+                }
+            }
+        }
+        public static void ColourButton(Button cmd)
+        {
+            cmd.BackColor = BackgroundColour;
+            cmd.ForeColor = TextColour;
+        }
+        public static void ColourCombobox(ComboBox cbo)
+        {
+            cbo.BackColor = TextboxBackColour;
+            cbo.ForeColor = TextColour;
+        }
+
+        }
 }

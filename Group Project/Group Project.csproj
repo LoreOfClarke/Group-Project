@@ -73,13 +73,23 @@
     <Compile Include="Classes\FixtureTableDisplay.cs" />
     <Compile Include="Classes\League.cs" />
     <Compile Include="Classes\LeagueTableDisplay.cs" />
+    <Compile Include="Classes\Password.cs" />
+    <Compile Include="Classes\PasswordTableDisplay.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\PlayerDisplayTable.cs" />
     <Compile Include="Classes\ResultsTableDisplay.cs" />
     <Compile Include="Classes\Team.cs" />
+    <Compile Include="Classes\TeamDetails.cs" />
     <Compile Include="ColourChange.cs" />
+    <Compile Include="ColourChangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColourChangeForm.Designer.cs">
+      <DependentUpon>ColourChangeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\FixtureList.cs" />
     <Compile Include="Database\LeagueList.cs" />
+    <Compile Include="Database\PasswordList.cs" />
     <Compile Include="Database\TeamList.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\TeamPlayers.cs" />
@@ -110,11 +120,29 @@
     <Compile Include="UserControls\FixtureView.Designer.cs">
       <DependentUpon>FixtureView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LeagueDetailsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LeagueDetailsView.Designer.cs">
+      <DependentUpon>LeagueDetailsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\LeagueView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\LeagueView.Designer.cs">
       <DependentUpon>LeagueView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PasswordControlView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PasswordControlView.Designer.cs">
+      <DependentUpon>PasswordControlView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TeamDetailsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TeamDetailsView.Designer.cs">
+      <DependentUpon>TeamDetailsView.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\TeamView.cs">
       <SubType>UserControl</SubType>
@@ -124,6 +152,9 @@
     </Compile>
     <EmbeddedResource Include="AdminView.resx">
       <DependentUpon>AdminView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColourChangeForm.resx">
+      <DependentUpon>ColourChangeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -146,8 +177,17 @@
     <EmbeddedResource Include="UserControls\FixtureView.resx">
       <DependentUpon>FixtureView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LeagueDetailsView.resx">
+      <DependentUpon>LeagueDetailsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LeagueView.resx">
       <DependentUpon>LeagueView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PasswordControlView.resx">
+      <DependentUpon>PasswordControlView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TeamDetailsView.resx">
+      <DependentUpon>TeamDetailsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TeamView.resx">
       <DependentUpon>TeamView.cs</DependentUpon>

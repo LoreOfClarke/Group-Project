@@ -1,10 +1,10 @@
 ﻿namespace Group_Project.Classes
 {
-    class League
+    public class League
     {
-        public int LeagueId;
-        public string LeagueName;
-        public int Capacity;
-        public string Sponsor;
+        public int LeagueId { get; set; }
+        public string LeagueName { get; set; }
+        public int Capacity { get; set; }
+        public string Sponsor { get; set; }
     }
 }

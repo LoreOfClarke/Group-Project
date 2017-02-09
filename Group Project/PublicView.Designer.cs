@@ -76,6 +76,7 @@
             this.tsmiColours.Name = "tsmiColours";
             this.tsmiColours.Size = new System.Drawing.Size(78, 25);
             this.tsmiColours.Text = "Colours";
+            this.tsmiColours.Click += new System.EventHandler(this.tsmiColours_Click);
             // 
             // tscbLeague
             // 
@@ -182,6 +183,7 @@
             this.Name = "FrontPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrontPage_Load);
+            this.VisibleChanged += new System.EventHandler(this.FrontPage_VisibleChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);

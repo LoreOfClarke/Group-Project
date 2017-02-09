@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace Group_Project.Database
 {
     static class TeamList
     {
-        public static List<Classes.Team> Fill(OleDbConnection DBConnection, int League)
+        public static List<Classes.Team> Fill(int League)
         {
             List<Classes.Team> TeamList = new List<Classes.Team>();
             //add data from team table
             try
             {
                 OleDbCommand command;
-                command = new OleDbCommand("SELECT Teams.TeamID, Teams.TeamName, Teams.Stadium FROM Teams INNER JOIN TeamLeague ON Teams.TeamID = TeamLeague.TeamID WHERE (((TeamLeague.Active)=True) AND ((TeamLeague.LeagueID)=@varleague));", DBConnection);
+                command = new OleDbCommand("SELECT Teams.TeamID, Teams.TeamName, Teams.Stadium FROM Teams INNER JOIN TeamLeague ON Teams.TeamID = TeamLeague.TeamID WHERE (((TeamLeague.Active)=True) AND ((TeamLeague.LeagueID)=@varleague));", Database.DatabaseConnection.DBConnection);
                 command.Parameters.Add(new OleDbParameter("@varleague", League));
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -35,7 +34,7 @@ namespace Group_Project.Database
             try
             {
                 OleDbCommand command;
-                command = new OleDbCommand("SELECT TeamFixtures.HomeTeam, TeamFixtures.GoalsFor, TeamFixtures.AwayTeam, TeamFixtures.GoalsAgainst FROM TeamFixtures WHERE(((TeamFixtures.LeagueID) = @varLeague)); ", DBConnection);
+                command = new OleDbCommand("SELECT TeamFixtures.HomeTeam, TeamFixtures.GoalsFor, TeamFixtures.AwayTeam, TeamFixtures.GoalsAgainst FROM TeamFixtures WHERE(((TeamFixtures.LeagueID) = @varLeague)); ",Database.DatabaseConnection.DBConnection);
                 command.Parameters.Add(new OleDbParameter("@varleague", League));
                 OleDbDataReader reader = command.ExecuteReader();
                 Classes.Team Home = new Classes.Team();
@@ -71,6 +70,76 @@ namespace Group_Project.Database
             }
 
             return TeamList;
+        }
+
+        public static List<Classes.TeamDetails> AllTeams()
+        {
+            List<Classes.TeamDetails> List = new List<Classes.TeamDetails>();
+            try
+            {
+                OleDbCommand command;
+                command = new OleDbCommand("SELECT Teams.TeamID, Teams.TeamName, Teams.Stadium FROM Teams;", Database.DatabaseConnection.DBConnection);
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Classes.TeamDetails Team = new Classes.TeamDetails();
+                    Team.TeamID = Int32.Parse(reader[0].ToString());
+                    Team.TeamName = reader[1].ToString();
+                    Team.Stadium = reader[2].ToString();
+                    List.Add(Team);
+                }
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
+            return List;
+        }
+
+        public static void Add(string TeamName, string Stadium)
+        {
+            try
+            {
+                OleDbCommand command = new OleDbCommand("INSERT INTO Teams (TeamName, Stadium) VALUES (@varTeamName, @varStadium) ", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varTeamName", TeamName.ToString()));
+                command.Parameters.Add(new OleDbParameter("@varStadium", Stadium.ToString()));
+                command.ExecuteNonQuery();
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
+        }
+        public static void Update(string TeamName, string Stadium, int TeamID)
+        {
+            try
+            {
+                OleDbCommand command;
+                command = new OleDbCommand("UPDATE Teams SET  TeamName = @varTeamName, Stadium = @varStadium WHERE TeamID = @varTeamID", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varTeamName", TeamName.ToString()));
+                command.Parameters.Add(new OleDbParameter("@varStadium", Stadium.ToString()));
+                command.Parameters.Add(new OleDbParameter("@varTeamID", TeamID));
+                command.ExecuteNonQuery();
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
+        }
+
+        public static void Delete(int TeamID)
+        {
+            try
+            {
+                OleDbCommand command;
+                command = new OleDbCommand("DELETE FROM Teams WHERE TeamID = @varTeamID  ", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varTeamID", TeamID.ToString()));
+                command.ExecuteNonQuery();
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
         }
     }
 }

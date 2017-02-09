@@ -7,12 +7,12 @@ namespace Group_Project.Database
 {
     static class LeagueList
     {
-        public static List<Classes.League> Fill(OleDbConnection DBConnection)
+        public static List<Classes.League> Fill()
         {
             List<Classes.League> LeagueList = new List<Classes.League>();
             try
             {
-                OleDbCommand command = new OleDbCommand("Select * from League;", DBConnection);
+                OleDbCommand command = new OleDbCommand("Select * from League;", Database.DatabaseConnection.DBConnection);
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -31,12 +31,12 @@ namespace Group_Project.Database
             return LeagueList;
         }
 
-        public static List<Classes.League> FillFromTeam(OleDbConnection DBConnection, int TeamID)
+        public static List<Classes.League> FillFromTeam( int TeamID)
         {
             List<Classes.League> LeagueList = new List<Classes.League>();
             try
             {
-                OleDbCommand command = new OleDbCommand("SELECT League.LeagueID, League.LeagueName, League.Capacity, League.Sponsor FROM League INNER JOIN TeamLeague ON League.LeagueID = TeamLeague.LeagueID WHERE(((TeamLeague.TeamID) = 1)); ", DBConnection);
+                OleDbCommand command = new OleDbCommand("SELECT League.LeagueID, League.LeagueName, League.Capacity, League.Sponsor FROM League INNER JOIN TeamLeague ON League.LeagueID = TeamLeague.LeagueID WHERE(((TeamLeague.TeamID) = 1)); ", Database.DatabaseConnection.DBConnection);
                 command.Parameters.Add(new OleDbParameter("@varteam", TeamID));
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -54,6 +54,39 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
             return LeagueList;
+        }
+
+        public static void Add(string LeagueName, int Capacity, string Sponsor)
+        {
+            try
+            {
+                OleDbCommand command = new OleDbCommand("INSERT INTO League (LeagueName, Capacity, Sponsor) VALUES (@varLeagueName, @varCapacity, @varSponsor) ; ", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varLeagueName", LeagueName));
+                command.Parameters.Add(new OleDbParameter("@varCapacity", Capacity));
+                command.Parameters.Add(new OleDbParameter("@varSponsor", Sponsor.ToString()));
+                command.ExecuteNonQuery();
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
+        }
+        public static void Update(string LeagueName, int Capacity, string Sponsor, int EditingLeague)
+        {
+            OleDbCommand command;
+            command = new OleDbCommand("UPDATE League SET  LeagueName = @varLeagueName, Capacity = @varCapacity, Sponsor = @varSponsor WHERE LeagueID = @varLeagueID  ", DatabaseConnection.DBConnection);
+            command.Parameters.Add(new OleDbParameter("@varLeagueName", LeagueName));
+            command.Parameters.Add(new OleDbParameter("@varCapacity", Capacity));
+            command.Parameters.Add(new OleDbParameter("@varSponsor", Sponsor.ToString()));
+            command.Parameters.Add(new OleDbParameter("varLeagueID", EditingLeague.ToString()));
+            command.ExecuteNonQuery();
+        }
+        public static void Delete(int LeagueID)
+        {
+            OleDbCommand command;
+            command = new OleDbCommand("DELETE FROM League WHERE LeagueID = @varLeagueID  ", DatabaseConnection.DBConnection);
+            command.Parameters.Add(new OleDbParameter("@varLeagueID", LeagueID));
+            command.ExecuteNonQuery();
         }
     }
 }
