@@ -5,10 +5,10 @@ namespace Group_Project
 {
     static class ColourChange
     {
-         //setting the default colours
+        //setting the default colours
         private static Color BackgroundColour
-            {
-                get
+        {
+            get
                 {
                     if (Properties.Settings.Default.ColourSetting == 0)
                     {
@@ -18,17 +18,21 @@ namespace Group_Project
                     {
                         return Color.Black;
                     }
+                    else if (Properties.Settings.Default.ColourSetting == 2)
+                    {
+                        return Color.LightCoral;
+                    }
                     else
                     {
                         return Color.WhiteSmoke;
                     }
                 }
-            }
+        }
         private static Color TextColour
+        {
+            get
             {
-                get
-                {
-                    if (Properties.Settings.Default.ColourSetting == 0)
+                if (Properties.Settings.Default.ColourSetting == 0)
                     {
                         return Color.Black;
                     }
@@ -36,7 +40,11 @@ namespace Group_Project
                     {
                         return Color.WhiteSmoke;
                     }
-                    else
+                else if (Properties.Settings.Default.ColourSetting == 2)
+                {
+                    return Color.Black;
+                }
+                else
                     {
                         return Color.Black;
                     }
@@ -54,7 +62,11 @@ namespace Group_Project
                     {
                         return SystemColors.ControlDark;
                     }
-                    else
+                else if (Properties.Settings.Default.ColourSetting == 2)
+                {
+                    return Color.Coral;
+                }
+                else
                     {
                         return SystemColors.Control;
                     }
@@ -72,7 +84,11 @@ namespace Group_Project
                     {
                         return Color.DarkGoldenrod;
                     }
-                    else
+                else if (Properties.Settings.Default.ColourSetting == 2)
+                {
+                    return Color.LawnGreen;
+                }
+                else
                     {
                         return SystemColors.ControlDark;
                     }
@@ -90,7 +106,11 @@ namespace Group_Project
                     {
                         return Color.AliceBlue;
                     }
-                    else
+                else if (Properties.Settings.Default.ColourSetting == 2)
+                {
+                    return Color.ForestGreen;
+                }
+                else
                     {
                         return SystemColors.ControlLightLight;
                     }

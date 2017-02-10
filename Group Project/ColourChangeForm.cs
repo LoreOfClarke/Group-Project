@@ -38,6 +38,19 @@ namespace Group_Project
             ColourChange.ColourForm(this);
             ColourChange.ColourButton(cmdStandard);
             ColourChange.ColourButton(cmdHighContrast);
+            ColourChange.ColourButton(cmdRed);
+        }
+
+        private void cmdRed_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ColourSetting = 2;
+            UpdateParent(sender, e);
+            colourChange();
+        }
+
+        private void frmColourChange_Load(object sender, EventArgs e)
+        {
+            colourChange();
         }
     }
 }
