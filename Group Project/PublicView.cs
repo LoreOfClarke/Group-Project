@@ -7,6 +7,9 @@ namespace Group_Project
 {
     public partial class FrontPage : Form
     {
+        /// <summary>
+        /// A list of Classes holding information to make updating easier
+        /// </summary>
         private List<Classes.League> LeagueList = new List<Classes.League>();
         private List<Classes.Team> TeamList = new List<Classes.Team>();
         private List<Classes.Player> PlayerList = new List<Classes.Player>();
@@ -14,12 +17,18 @@ namespace Group_Project
 
 
         #region Initial Setup
-
+        /// <summary>
+        /// AutoGenerarted Code
+        /// </summary>
         public FrontPage()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// On loading the form, connect to the database and fill the league database.
+        /// </summary>
+        /// <param name="sender">The sending object</param>
+        /// <param name="e">Event Arguments</param>
         private void FrontPage_Load(object sender, EventArgs e)
         {
             Database.DatabaseConnection.dbConnect();
@@ -27,11 +36,14 @@ namespace Group_Project
             Database.DatabaseConnection.dbDisconnect();
             colourchange();
         }
-
-
         #endregion
         
         #region Object Events
+        /// <summary>
+        /// Whenever the league value is changed, including when populating the leage dropdown, then load in the applicable teams.
+        /// </summary>
+        /// <param name="sender">the sending object</param>
+        /// <param name="e">the event arguements</param>
         private void tscbLeague_SelectedIndexChanged(object sender, EventArgs e)
         {
             Database.DatabaseConnection.dbConnect();
@@ -39,15 +51,25 @@ namespace Group_Project
             Database.DatabaseConnection.dbDisconnect();
             leagueView1.update(TeamList);
         }
+        /// <summary>
+        /// Whenever the team value is changed, including when populating the team dropdown, get the player details and populate related usercontrols
+        /// </summary>
+        /// <param name="sender">Sending object</param>
+        /// <param name="e">Event Argument</param>
         private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
             Database.DatabaseConnection.dbConnect();
-            FillPlayers(TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
-            FillFixtures( LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            PlayerList = Database.TeamPlayers.Fill(TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+            FixtureList = Database.FixtureList.FillLeague(LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
             Database.DatabaseConnection.dbDisconnect();
             teamView1.update(PlayerList, false);
             fixtureView1.update(FixtureList,false, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
         }
+        /// <summary>
+        /// on clicking the login button, open that form as dialog.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiLogin_Click(object sender, EventArgs e)
         {
             frmLogin login = new frmLogin();
@@ -55,6 +77,11 @@ namespace Group_Project
             login.ShowDialog();
             login.ColourChangeEvent += ColourChangeForm_ColourChangeEvent;
         }
+        /// <summary>
+        /// on clicking the login button, open that form modally
+        /// </summary>
+        /// <param name="sender">sending object</param>
+        /// <param name="e">event arguement</param>
         private void tsmiColours_Click(object sender, EventArgs e)
         {
             frmColourChange ColourChangeForm = new frmColourChange();
@@ -62,7 +89,11 @@ namespace Group_Project
             ColourChangeForm.ColourChangeEvent += ColourChangeForm_ColourChangeEvent;
             ColourChangeForm.ShowDialog();
         }
-
+        /// <summary>
+        /// on opening this page from other views, change the colours
+        /// </summary>
+        /// <param name="sender">sending object</param>
+        /// <param name="e">event arguements</param>
         private void FrontPage_VisibleChanged(object sender, EventArgs e)
         {
             colourchange();
@@ -70,6 +101,9 @@ namespace Group_Project
         #endregion
 
         #region Global Updates
+        /// <summary>
+        /// Fill the leagues table and set up the league dropdown
+        /// </summary>
         private void FillLeagues()
         {
             LeagueList = Database.LeagueList.Fill();
@@ -79,7 +113,10 @@ namespace Group_Project
             }
             tscbLeague.SelectedIndex = 0;
         }
-
+        /// <summary>
+        /// Fill the teams class and set up the team dropdown
+        /// </summary>
+        /// <param name="League"></param>
         private void FillTeams(int League)
         {
             TeamList = Database.TeamList.Fill(League);
@@ -89,26 +126,21 @@ namespace Group_Project
             }
             tscbTeam.SelectedIndex = 0;
         }
-
-        private void FillPlayers(int Team)
-        {
-            PlayerList = Database.TeamPlayers.Fill(Team);
-        }
-
-        private void FillFixtures(int League, int Team)
-        {
-            FixtureList = Database.FixtureList.FillLeague(League, Team);
-        }
-
-
         #endregion
 
         #region Utility Functions
+        /// <summary>
+        /// the event that other pages can trigger to change the colours
+        /// </summary>
+        /// <param name="sender">sending object</param>
+        /// <param name="e">event arguemet</param>
         private void ColourChangeForm_ColourChangeEvent(object sender, EventArgs e)
         {
             colourchange();
         }
-
+        /// <summary>
+        /// Code to change the colour of all objects and usercontrols
+        /// </summary>
         private void colourchange()
         {
             ColourChange.ColourForm(this);
@@ -117,7 +149,6 @@ namespace Group_Project
             fixtureView1.colourChange();
             teamView1.colourChange();
         }
-
         #endregion
 
     }

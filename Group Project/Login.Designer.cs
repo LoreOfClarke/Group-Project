@@ -28,74 +28,102 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdManagerLogin = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.cmdLogin = new System.Windows.Forms.Button();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.lblVerifyPassword = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtVerifyPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // cmdManagerLogin
+            // cmdLogin
             // 
-            this.cmdManagerLogin.Location = new System.Drawing.Point(77, 136);
-            this.cmdManagerLogin.Name = "cmdManagerLogin";
-            this.cmdManagerLogin.Size = new System.Drawing.Size(107, 57);
-            this.cmdManagerLogin.TabIndex = 0;
-            this.cmdManagerLogin.Text = "Manager Login";
-            this.cmdManagerLogin.UseVisualStyleBackColor = true;
-            this.cmdManagerLogin.Click += new System.EventHandler(this.cmdManagerLogin_Click);
+            this.cmdLogin.Location = new System.Drawing.Point(110, 147);
+            this.cmdLogin.Name = "cmdLogin";
+            this.cmdLogin.Size = new System.Drawing.Size(107, 57);
+            this.cmdLogin.TabIndex = 3;
+            this.cmdLogin.Text = "Login";
+            this.cmdLogin.UseVisualStyleBackColor = true;
+            this.cmdLogin.Click += new System.EventHandler(this.cmdLogin_Click);
             // 
-            // numericUpDown1
+            // lblUsername
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(77, 110);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(107, 20);
-            this.numericUpDown1.TabIndex = 1;
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(75, 46);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.TabIndex = 4;
+            this.lblUsername.Text = "Username";
             // 
-            // label1
+            // lblPassword
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(89, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 31);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "FOR TEST";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(75, 78);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(53, 13);
+            this.lblPassword.TabIndex = 5;
+            this.lblPassword.Text = "Password";
             // 
-            // button1
+            // lblVerifyPassword
             // 
-            this.button1.Location = new System.Drawing.Point(207, 136);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 57);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Admin Login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lblVerifyPassword.AutoSize = true;
+            this.lblVerifyPassword.Location = new System.Drawing.Point(75, 110);
+            this.lblVerifyPassword.Name = "lblVerifyPassword";
+            this.lblVerifyPassword.Size = new System.Drawing.Size(82, 13);
+            this.lblVerifyPassword.TabIndex = 6;
+            this.lblVerifyPassword.Text = "Verify Password";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(164, 43);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtUsername.TabIndex = 7;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(164, 75);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.TabIndex = 8;
+            // 
+            // txtVerifyPassword
+            // 
+            this.txtVerifyPassword.Location = new System.Drawing.Point(164, 107);
+            this.txtVerifyPassword.Name = "txtVerifyPassword";
+            this.txtVerifyPassword.PasswordChar = '*';
+            this.txtVerifyPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtVerifyPassword.TabIndex = 9;
             // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 300);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.cmdManagerLogin);
+            this.ClientSize = new System.Drawing.Size(369, 236);
+            this.Controls.Add(this.txtVerifyPassword);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.lblVerifyPassword);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.lblUsername);
+            this.Controls.Add(this.cmdLogin);
             this.Name = "frmLogin";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button cmdManagerLogin;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cmdLogin;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblVerifyPassword;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtVerifyPassword;
     }
 }

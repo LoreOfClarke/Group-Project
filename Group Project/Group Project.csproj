@@ -90,6 +90,7 @@
     <Compile Include="Database\FixtureList.cs" />
     <Compile Include="Database\LeagueList.cs" />
     <Compile Include="Database\PasswordList.cs" />
+    <Compile Include="Database\TeamLeague.cs" />
     <Compile Include="Database\TeamList.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\TeamPlayers.cs" />
@@ -125,6 +126,12 @@
     </Compile>
     <Compile Include="UserControls\LeagueDetailsView.Designer.cs">
       <DependentUpon>LeagueDetailsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LeagueTeamAssignmentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LeagueTeamAssignmentView.Designer.cs">
+      <DependentUpon>LeagueTeamAssignmentView.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LeagueView.cs">
       <SubType>UserControl</SubType>
@@ -179,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LeagueDetailsView.resx">
       <DependentUpon>LeagueDetailsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LeagueTeamAssignmentView.resx">
+      <DependentUpon>LeagueTeamAssignmentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LeagueView.resx">
       <DependentUpon>LeagueView.cs</DependentUpon>

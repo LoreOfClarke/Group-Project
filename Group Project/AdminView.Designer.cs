@@ -46,6 +46,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpTeamDetails = new System.Windows.Forms.TabPage();
             this.teamDetailsView1 = new Group_Project.UserControls.TeamDetailsView();
+            this.tpAssignTeamToLeague = new System.Windows.Forms.TabPage();
+            this.leagueTeamAssignmentView1 = new Group_Project.UserControls.LeagueTeamAssignmentView();
             this.menuStrip1.SuspendLayout();
             this.tpLeagueDetails.SuspendLayout();
             this.tpPasswords.SuspendLayout();
@@ -54,6 +56,7 @@
             this.tpLeagueView.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpTeamDetails.SuspendLayout();
+            this.tpAssignTeamToLeague.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -198,6 +201,7 @@
             this.tabControl1.Controls.Add(this.tpPasswords);
             this.tabControl1.Controls.Add(this.tpLeagueDetails);
             this.tabControl1.Controls.Add(this.tpTeamDetails);
+            this.tabControl1.Controls.Add(this.tpAssignTeamToLeague);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 27);
             this.tabControl1.Name = "tabControl1";
@@ -223,6 +227,24 @@
             this.teamDetailsView1.Size = new System.Drawing.Size(1130, 644);
             this.teamDetailsView1.TabIndex = 0;
             // 
+            // tpAssignTeamToLeague
+            // 
+            this.tpAssignTeamToLeague.Controls.Add(this.leagueTeamAssignmentView1);
+            this.tpAssignTeamToLeague.Location = new System.Drawing.Point(4, 22);
+            this.tpAssignTeamToLeague.Name = "tpAssignTeamToLeague";
+            this.tpAssignTeamToLeague.Size = new System.Drawing.Size(1130, 644);
+            this.tpAssignTeamToLeague.TabIndex = 7;
+            this.tpAssignTeamToLeague.Text = "Team/League Assignment";
+            this.tpAssignTeamToLeague.UseVisualStyleBackColor = true;
+            // 
+            // leagueTeamAssignmentView1
+            // 
+            this.leagueTeamAssignmentView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leagueTeamAssignmentView1.Location = new System.Drawing.Point(0, 0);
+            this.leagueTeamAssignmentView1.Name = "leagueTeamAssignmentView1";
+            this.leagueTeamAssignmentView1.Size = new System.Drawing.Size(1130, 644);
+            this.leagueTeamAssignmentView1.TabIndex = 0;
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,6 +265,7 @@
             this.tpLeagueView.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tpTeamDetails.ResumeLayout(false);
+            this.tpAssignTeamToLeague.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +291,7 @@
         private UserControls.LeagueDetailsView leagueDetailsView1;
         private System.Windows.Forms.TabPage tpTeamDetails;
         private UserControls.TeamDetailsView teamDetailsView1;
+        private System.Windows.Forms.TabPage tpAssignTeamToLeague;
+        private UserControls.LeagueTeamAssignmentView leagueTeamAssignmentView1;
     }
 }

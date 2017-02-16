@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Group_Project
@@ -32,6 +27,7 @@ namespace Group_Project
             passwordControlView1.UpdateView += new EventHandler(UpdateView);
             leagueDetailsView1.UpdateView += new EventHandler(UpdateView);
             teamDetailsView1.UpdateView += new EventHandler(UpdateView);
+            leagueTeamAssignmentView1.UpdateView += new EventHandler(UpdateView);
             colourchange();
             GetData();
         }
@@ -111,8 +107,10 @@ namespace Group_Project
         {
             Database.DatabaseConnection.dbConnect();
             FillTeams(LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            List<Classes.TeamDetails> TeamDetailsList = Database.TeamList.AllTeams();
             Database.DatabaseConnection.dbDisconnect();
             leagueView1.update(TeamList);
+            leagueTeamAssignmentView1.update(LeagueList, TeamDetailsList);
         }
 
         private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,6 +161,7 @@ namespace Group_Project
             passwordControlView1.colourChange();
             teamDetailsView1.colourChange();
             teamView1.colourChange();
+            leagueTeamAssignmentView1.colourChange();
         }
         #endregion
 

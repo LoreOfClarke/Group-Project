@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Windows.Forms;
 
@@ -30,7 +29,6 @@ namespace Group_Project.Database
             }
             return Passwords;
         }
-
         public static void Add(string Username, string Password, string AccessRights)
         {
             try
@@ -62,7 +60,6 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
-
         public static void Delete(string Username)
         {
             try
@@ -76,6 +73,46 @@ namespace Group_Project.Database
             {
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
+        }
+        public static string GetPassword(string Username)
+        {
+            string Password = "";
+            try
+            {
+                OleDbCommand command;
+                command = new OleDbCommand("SELECT Pass FROM Login WHERE Username = @varUsername  ", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varUsername", Username.ToString()));
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Password = reader[0].ToString();
+                }
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
+            return Password;
+        }
+        public static string GetAccessLevel(string Username)
+        {
+            string AccessLevel = "";
+            try
+            {
+                OleDbCommand command;
+                command = new OleDbCommand("SELECT AccessRights FROM Login WHERE Username = @varUsername  ", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varUsername", Username.ToString()));
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    AccessLevel = reader[0].ToString();
+                }
+            }
+            catch (OleDbException exception)
+            {
+                MessageBox.Show(exception.Message, "OleDb Exception");
+            }
+            return AccessLevel;
         }
     }
 }
