@@ -8,11 +8,20 @@ namespace Group_Project
     public partial class FrontPage : Form
     {
         /// <summary>
-        /// A list of Classes holding information to make updating easier
+        /// A list of all the leagues in the databse
         /// </summary>
         private List<Classes.League> LeagueList = new List<Classes.League>();
+        /// <summary>
+        /// A list of all the teams and their score in the selected league
+        /// </summary>
         private List<Classes.Team> TeamList = new List<Classes.Team>();
+        /// <summary>
+        /// A list of all the players in the selected Team
+        /// </summary>
         private List<Classes.Player> PlayerList = new List<Classes.Player>();
+        /// <summary>
+        /// A list of all the fixtures in the selected league
+        /// </summary>
         private List<Classes.Fixture> FixtureList = new List<Classes.Fixture>();
 
 

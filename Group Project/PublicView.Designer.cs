@@ -35,17 +35,15 @@
             this.tscbTeam = new System.Windows.Forms.ToolStripComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.leagueView1 = new Group_Project.PublicViewUserControls.LeagueView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.teamView1 = new Group_Project.UserControls.TeamView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.fixtureView1 = new Group_Project.UserControls.FixtureView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,10 +113,19 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "League View";
             // 
+            // leagueView1
+            // 
+            this.leagueView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leagueView1.Location = new System.Drawing.Point(0, 0);
+            this.leagueView1.Margin = new System.Windows.Forms.Padding(0);
+            this.leagueView1.Name = "leagueView1";
+            this.leagueView1.Size = new System.Drawing.Size(1111, 555);
+            this.leagueView1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.IndianRed;
-            this.tabPage2.Controls.Add(this.panel2);
+            this.tabPage2.Controls.Add(this.teamView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -126,13 +133,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Team View";
             // 
-            // panel2
+            // teamView1
             // 
-            this.panel2.Controls.Add(this.teamView1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1112, 555);
-            this.panel2.TabIndex = 19;
+            this.teamView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.teamView1.Location = new System.Drawing.Point(3, 3);
+            this.teamView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.teamView1.Name = "teamView1";
+            this.teamView1.Size = new System.Drawing.Size(1105, 549);
+            this.teamView1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -143,24 +151,6 @@
             this.tabPage3.Size = new System.Drawing.Size(1111, 555);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Fixtures";
-            // 
-            // leagueView1
-            // 
-            this.leagueView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leagueView1.Location = new System.Drawing.Point(0, 0);
-            this.leagueView1.Margin = new System.Windows.Forms.Padding(0);
-            this.leagueView1.Name = "leagueView1";
-            this.leagueView1.Size = new System.Drawing.Size(1111, 555);
-            this.leagueView1.TabIndex = 0;
-            // 
-            // teamView1
-            // 
-            this.teamView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.teamView1.Location = new System.Drawing.Point(0, 0);
-            this.teamView1.Margin = new System.Windows.Forms.Padding(4);
-            this.teamView1.Name = "teamView1";
-            this.teamView1.Size = new System.Drawing.Size(1112, 555);
-            this.teamView1.TabIndex = 0;
             // 
             // fixtureView1
             // 
@@ -188,7 +178,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -205,7 +194,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ToolStripComboBox tscbTeam;
         private PublicViewUserControls.LeagueView leagueView1;
         private UserControls.TeamView teamView1;

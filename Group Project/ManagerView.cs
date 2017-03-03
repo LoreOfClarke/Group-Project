@@ -12,11 +12,20 @@ namespace Group_Project
         /// </summary>
         public int TeamID;
         /// <summary>
-        /// a collection of classes holding all of the information easily accessable.
+        /// A List containing all of the leagues in the database.
         /// </summary>
         private List<Classes.League> LeagueList = new List<Classes.League>();
+        /// <summary>
+        /// A List containing all of the Teams and their results in the selected league.
+        /// </summary>
         private List<Classes.Team> TeamList = new List<Classes.Team>();
+        /// <summary>
+        /// A List containing all of the players in the selected team.
+        /// </summary>
         private List<Classes.Player> PlayerList = new List<Classes.Player>();
+        /// <summary>
+        /// A List containing all of the fixtures in the League.
+        /// </summary>
         private List<Classes.Fixture> FixtureList = new List<Classes.Fixture>();
 
 

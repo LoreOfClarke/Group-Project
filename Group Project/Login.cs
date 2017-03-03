@@ -85,7 +85,9 @@ namespace Group_Project
                     default://the user is a manager (assuming sanitised database)
                         ManagerView MView = new ManagerView();
                         MView.Owner = this.Owner;
-                        MView.TeamID = int.Parse(txtUsername.Text);
+                        Database.DatabaseConnection.dbConnect();
+                        MView.TeamID = int.Parse(Database.PasswordList.GetAccessLevel(txtUsername.Text));
+                        Database.DatabaseConnection.dbDisconnect();
                         MView.Show();
                         this.Close();
                         break;
