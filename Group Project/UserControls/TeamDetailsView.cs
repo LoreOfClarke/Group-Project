@@ -18,6 +18,7 @@ namespace Group_Project.UserControls
         /// integer to store whether the user is adding or editing a record (1 for adding, 2 for editing)
         /// </summary>
         int EditMode;
+
         #region Update Handling
         /// <summary>
         /// Code to update the usercontrol
@@ -46,8 +47,11 @@ namespace Group_Project.UserControls
         }
         #endregion
 
-
         #region Utility Functions
+        /// <summary>
+        /// a utility function to switch between editing/adding mode or not
+        /// </summary>
+        /// <param name="access">false for editing, true to return to normal</param>
         private void DetailsAccess(bool access)
         {
             dgvTeams.Enabled = access;
@@ -56,6 +60,9 @@ namespace Group_Project.UserControls
             pnlEdit.Visible = !access;
             pnlStandard.Visible = access;
         }
+        /// <summary>
+        /// code that changes the colour of all controls
+        /// </summary>
         public void colourChange()
         {
             ColourChange.ColourSplitPanel(splitContainer1);
@@ -77,9 +84,12 @@ namespace Group_Project.UserControls
         }
         #endregion
 
-
         #region Object Code
-
+        /// <summary>
+        /// Code run on changing the selected item on the datagridview. Basically just fills in the textboxes
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Argument</param>
         private void dgvTeams_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvTeams.SelectedRows.Count > 0)
@@ -92,14 +102,22 @@ namespace Group_Project.UserControls
                 txtTeamName.Text = txtStadium.Text = "";
             }
         }
-
+        /// <summary>
+        /// On clicking the cancel button, return the form to normal
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Argument</param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             DetailsAccess(true);
             EditMode = 0;
             UpdateParent(this, e);
         }
-
+        /// <summary>
+        /// On clicking the confirm button, check whether the user was editing or adding a record, then connect to the database and use the changes.
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Argument</param>
         private void cmdConfirm_Click(object sender, EventArgs e)
         {
             DetailsAccess(true);
@@ -123,19 +141,31 @@ namespace Group_Project.UserControls
             EditMode = 0;
             UpdateParent(this, e);
         }
-
+        /// <summary>
+        /// When the add button is clicked, change to editing mode and remember that a record is to be added
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Arguements</param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             DetailsAccess(false);
             EditMode = 1;
         }
-
+        /// <summary>
+        /// When the Update button is clicked, change to editing mode and remember that a record is to be edited, and which record is being changed
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Arguements</param>
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
             DetailsAccess(false);
             EditMode = 2;
         }
-
+        /// <summary>
+        /// When the Delete button is clicked, Connect to the database and delete the record then tell the parent form to update.
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Arguements</param>
         private void cmdDelete_Click(object sender, EventArgs e)
         {
             Database.DatabaseConnection.dbConnect();

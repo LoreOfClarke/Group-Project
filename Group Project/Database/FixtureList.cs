@@ -7,6 +7,12 @@ namespace Group_Project.Database
 {
     class FixtureList
     {
+        /// <summary>
+        /// fill a list of fixtures that a team perfoms in any particular league, home or away.
+        /// </summary>
+        /// <param name="League">The league being searched</param>
+        /// <param name="TeamID">The team being reaquested</param>
+        /// <returns> a list of fixtures that the team perfoms in the given  league, home or away.</returns>
         public static List<Classes.Fixture> FillLeague(int League, int TeamID)
         {
             List<Classes.Fixture> FixtureList = new List<Classes.Fixture>();
@@ -39,7 +45,11 @@ namespace Group_Project.Database
             }
             return FixtureList;
         }
-
+        /// <summary>
+        /// fill a list of fixtures that a team perfoms, home or away.
+        /// </summary>
+        /// <param name="TeamID">The team being reaquested</param>
+        /// <returns>a list of fixtures that the team perfoms</returns>
         public static List<Classes.Fixture> Fill(int TeamID)
         {
             List<Classes.Fixture> FixtureList = new List<Classes.Fixture>();
@@ -71,7 +81,14 @@ namespace Group_Project.Database
             }
             return FixtureList;
         }
-
+        /// <summary>
+        /// Add a fixture.
+        /// </summary>
+        /// <param name="leagueID">The league, to which the fixture counts</param>
+        /// <param name="HometeamID">The team Playing at home</param>
+        /// <param name="AwayteamID">The team playing away</param>
+        /// <param name="Date">The date of the fixture</param>
+        /// <param name="Time">The time of the kickoff</param>
         public static void Add(int leagueID, int HometeamID, int AwayteamID, DateTime Date, DateTime Time)
         {
             try
@@ -89,7 +106,14 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
-
+        /// <summary>
+        /// Edit an unplayed fixture
+        /// </summary>
+        /// <param name="FixtureID">The fixture being edited</param>
+        /// <param name="HometeamID">The team Playing at home</param>
+        /// <param name="AwayteamID">The team playing away</param>
+        /// <param name="Date">The date of the fixture</param>
+        /// <param name="Time">The time of the kickoff</param>
         public static void EditFixture(int FixtureID, int HomeTeam, int AwayTeam, DateTime FixtureDate, DateTime FixtureTime)
         {
             OleDbCommand command;
@@ -101,7 +125,14 @@ namespace Group_Project.Database
             command.Parameters.Add(new OleDbParameter("@varFixtureID", FixtureID.ToString()));
             command.ExecuteNonQuery();
         }
-
+        /// <summary>
+        /// Find a fixture's ID
+        /// </summary>
+        /// <param name="HometeamID">The team Playing at home</param>
+        /// <param name="AwayteamID">The team playing away</param>
+        /// <param name="Date">The date of the fixture</param>
+        /// <param name="Time">The time of the kickoff</param>
+        /// <returns></returns>
         public static int FindFixtureID(int HomeTeam, int AwayTeam, DateTime FixtureDate, DateTime FixtureTime)
         {
             OleDbCommand command;
@@ -118,7 +149,10 @@ namespace Group_Project.Database
             }
             return FixtureID;
         }
-
+        /// <summary>
+        /// Delete a fixture
+        /// </summary>
+        /// <param name="FixtureID">The ID of the fixture being deleted</param>
         public static void DeleteFixture(int FixtureID)
         {
             OleDbCommand command;
@@ -126,7 +160,12 @@ namespace Group_Project.Database
             command.Parameters.Add(new OleDbParameter("@varFixtureID", FixtureID.ToString()));
             command.ExecuteNonQuery();
         }
-
+        /// <summary>
+        /// Add a soce to the fixture.
+        /// </summary>
+        /// <param name="FixtureID">The ID of the fixture being edited</param>
+        /// <param name="HomeGoals">The amount of home goals</param>
+        /// <param name="AwayGoals">The amout of away goals</param>
         public static void AddResult(int FixtureID, int HomeGoals, int AwayGoals)
         {
             OleDbCommand command;

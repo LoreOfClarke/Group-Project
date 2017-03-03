@@ -6,6 +6,12 @@ namespace Group_Project.Database
 {
     class TeamLeague
     {
+        /// <summary>
+        /// Check whether or not there is a record in the database to be edited, or if it needs to be created
+        /// </summary>
+        /// <param name="LeagueID">The league that the team will play in</param>
+        /// <param name="TeamID">The playing team</param>
+        /// <returns>True if a record exists, False if a record needs to be created</returns>
         public static Boolean CheckExists(int LeagueID, int TeamID)
         {
             OleDbCommand command;
@@ -15,6 +21,12 @@ namespace Group_Project.Database
             OleDbDataReader reader = command.ExecuteReader();
             return reader.HasRows;
         }
+        /// <summary>
+        /// Check whether or not a team is assigned to a league
+        /// </summary>
+        /// <param name="LeagueID">The ID of the league being checked</param>
+        /// <param name="TeamID">The ID of the team being checked</param>
+        /// <returns>True if the team is playing in the league. False if they are not.</returns>
         public static Boolean CheckAssign(int LeagueID, int TeamID)
         {
             OleDbCommand command;
@@ -41,6 +53,11 @@ namespace Group_Project.Database
             }
             return reader.HasRows;
         }
+        /// <summary>
+        /// Create a record in the table (this means no record was there previously, and so also includes assigning the team and league together.
+        /// </summary>
+        /// <param name="LeagueID">The ID of the league being assigned</param>
+        /// <param name="TeamID">The ID of the team being assigned</param>
         public static void CreateAssign(int LeagueID, int TeamID)
         {
             OleDbCommand command;
@@ -50,7 +67,12 @@ namespace Group_Project.Database
             command.Parameters.Add(new OleDbParameter("@varNow", DateTime.Now.ToString()));
             command.ExecuteNonQuery();
         }
-
+        /// <summary>
+        /// Set the record of the team and leage to either assgn them together or seperate them.
+        /// </summary>
+        /// <param name="LeagueID">The ID of the league being (un)assigned</param>
+        /// <param name="TeamID">The ID of the team being (un)assigned</param>
+        /// <param name="Active">0 if the team is being unassigned, 1 if the team is being assigned</param>
         public static void SetAssign(int LeagueID, int TeamID, int Active)
         {
             OleDbCommand command;

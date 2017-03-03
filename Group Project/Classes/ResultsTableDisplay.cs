@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Group_Project.Classes
 {
+    /// <summary>
+    /// A table to format a datagridview
+    /// </summary>
     class ResultsTableDisplay
     {
         public string Home_Team { get; set; }

@@ -1,5 +1,8 @@
 ﻿namespace Group_Project.Classes
 {
+    /// <summary>
+    /// A class to format a datagridview report
+    /// </summary>
      class LeagueTableDisplay
     {
         public string Name { get; set; }

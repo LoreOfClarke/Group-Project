@@ -7,6 +7,11 @@ namespace Group_Project.Database
 {
     static class TeamList
     {
+        /// <summary>
+        /// Fill a list of classs with all of the teams in a league
+        /// </summary>
+        /// <param name="League">The ID of the league being searched</param>
+        /// <returns>a list of classs with all of the teams in a league</returns>
         public static List<Classes.Team> Fill(int League)
         {
             List<Classes.Team> TeamList = new List<Classes.Team>();
@@ -71,7 +76,10 @@ namespace Group_Project.Database
 
             return TeamList;
         }
-
+        /// <summary>
+        /// Fill a list of classes with all teams on record
+        /// </summary>
+        /// <returns>a list of classes containing all teams in the database</returns>
         public static List<Classes.TeamDetails> AllTeams()
         {
             List<Classes.TeamDetails> List = new List<Classes.TeamDetails>();
@@ -95,7 +103,11 @@ namespace Group_Project.Database
             }
             return List;
         }
-
+        /// <summary>
+        /// Add a new team
+        /// </summary>
+        /// <param name="TeamName">The name of the team</param>
+        /// <param name="Stadium">The stadium a team plays in</param>
         public static void Add(string TeamName, string Stadium)
         {
             try
@@ -110,6 +122,12 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
+        /// <summary>
+        /// Update a team's details
+        /// </summary>
+        /// <param name="TeamName">The new name of the team</param>
+        /// <param name="Stadium">The new staduim</param>
+        /// <param name="TeamID"> The ID of the team being updated</param>
         public static void Update(string TeamName, string Stadium, int TeamID)
         {
             try
@@ -126,7 +144,10 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
-
+        /// <summary>
+        /// Delete a team
+        /// </summary>
+        /// <param name="TeamID">The ID of the team to delete</param>
         public static void Delete(int TeamID)
         {
             try

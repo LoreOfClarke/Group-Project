@@ -6,6 +6,10 @@ namespace Group_Project.Database
 {
     static class PasswordList
     {
+        /// <summary>
+        /// Fill a list of classes of all of the passwords
+        /// </summary>
+        /// <returns>a list of classes of all of the passwords</returns>
         public static List<Classes.Password> Fill()
         {
             List<Classes.Password> Passwords = new List<Classes.Password>();
@@ -29,6 +33,12 @@ namespace Group_Project.Database
             }
             return Passwords;
         }
+        /// <summary>
+        /// Add a new username and password
+        /// </summary>
+        /// <param name="Username">The username</param>
+        /// <param name="Password">The password</param>
+        /// <param name="AccessRights">Either "ADMINISTRATOR" for admin access, or the ID of the team that the person has access too.</param>
         public static void Add(string Username, string Password, string AccessRights)
         {
             try
@@ -44,6 +54,12 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
+        /// <summary>
+        /// Edit a username and password.
+        /// </summary>
+        /// <param name="Username">The username</param>
+        /// <param name="Password">The password</param>
+        /// <param name="AccessRights">Either "ADMINISTRATOR" for admin access, or the ID of the team that the person has access too.</param>
         public static void Update(string Username, string Password, string AccessRights)
         {
             try
@@ -60,6 +76,10 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
+        /// <summary>
+        /// Delete a usename and password
+        /// </summary>
+        /// <param name="Username">the username to delete</param>
         public static void Delete(string Username)
         {
             try
@@ -74,6 +94,11 @@ namespace Group_Project.Database
                 MessageBox.Show(exception.Message, "OleDb Exception");
             }
         }
+        /// <summary>
+        /// Get the password to a username
+        /// </summary>
+        /// <param name="Username">The username, to which a password is being pulled out</param>
+        /// <returns>The correct password for the username</returns>
         public static string GetPassword(string Username)
         {
             string Password = "";
@@ -94,6 +119,11 @@ namespace Group_Project.Database
             }
             return Password;
         }
+        /// <summary>
+        /// Gets the password for the given username
+        /// </summary>
+        /// <param name="Username">the username</param>
+        /// <returns>Either "ADMINISTRATOR" for admin access, or the ID of the team that the person has access to</returns>
         public static string GetAccessLevel(string Username)
         {
             string AccessLevel = "";
