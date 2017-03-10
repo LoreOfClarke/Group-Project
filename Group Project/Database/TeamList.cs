@@ -46,28 +46,29 @@ namespace Group_Project.Database
                 Classes.Team Away = new Classes.Team();
                 while (reader.Read())
                 {
-                    Home = TeamList.Find(x => x.TeamID == Int32.Parse(reader[0].ToString()));
-                    Away = TeamList.Find(x => x.TeamID == Int32.Parse(reader[2].ToString()));
-                    Home.GoalsFor += Int32.Parse(reader[1].ToString());
-                    Home.GoalsAgainst += Int32.Parse(reader[3].ToString());
-                    Away.GoalsFor += Int32.Parse(reader[3].ToString());
-                    Away.GoalsAgainst += Int32.Parse(reader[1].ToString());
-                    if (Int32.Parse(reader[1].ToString()) > Int32.Parse(reader[3].ToString()))
-                    {
-                        Home.GamesWon += 1;
-                        Away.GamesLost += 1;
+                        Home = TeamList.Find(x => x.TeamID == Int32.Parse(reader[0].ToString()));
+                        Away = TeamList.Find(x => x.TeamID == Int32.Parse(reader[2].ToString()));
+                        Home.GoalsFor += Int32.Parse(reader[1].ToString());
+                        Home.GoalsAgainst += Int32.Parse(reader[3].ToString());
+                        Away.GoalsFor += Int32.Parse(reader[3].ToString());
+                        Away.GoalsAgainst += Int32.Parse(reader[1].ToString());
+                        if (Int32.Parse(reader[1].ToString()) > Int32.Parse(reader[3].ToString()))
+                        {
+                            Home.GamesWon += 1;
+                            Away.GamesLost += 1;
+                        }
+                        else if (Int32.Parse(reader[1].ToString()) < Int32.Parse(reader[3].ToString()))
+                        {
+                            Home.GamesLost += 1;
+                            Away.GamesWon += 1;
+                        }
+                        else if (Int32.Parse(reader[1].ToString()) == Int32.Parse(reader[3].ToString()))
+                        {
+                            Home.GamesDrawn += 1;
+                            Away.GamesDrawn += 1;
+                        }
                     }
-                    else if (Int32.Parse(reader[1].ToString()) < Int32.Parse(reader[3].ToString()))
-                    {
-                        Home.GamesLost += 1;
-                        Away.GamesWon += 1;
-                    }
-                    else if (Int32.Parse(reader[1].ToString()) == Int32.Parse(reader[3].ToString()))
-                    {
-                        Home.GamesDrawn += 1;
-                        Away.GamesDrawn += 1;
-                    }
-                }
+                
             }
             catch (OleDbException exception)
             {

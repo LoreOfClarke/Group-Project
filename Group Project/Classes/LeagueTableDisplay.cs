@@ -6,13 +6,13 @@
      class LeagueTableDisplay
     {
         public string Name { get; set; }
-        public int GP { get; set; }
-        public int W { get; set; }
-        public int D { get; set; }
-        public int L { get; set; }
-        public int GF { get; set; }
-        public int GA { get; set; }
-        public int GD { get { return GF - GA; } }
-        public int Pts { get; set; }
+        public int Goals_Played { get; set; }
+        public int Wins { get; set; }
+        public int Draws { get; set; }
+        public int Losses { get; set; }
+        public int Goals_For { get; set; }
+        public int Goals_Against { get; set; }
+        public int Goals_Difference { get { return Goals_For - Goals_Against; } }
+        public int Points { get; set; }
     }
 }

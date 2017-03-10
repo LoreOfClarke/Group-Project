@@ -82,8 +82,12 @@ namespace Group_Project.UserControls
             if (!access)
             {
                 dtpDate.MinDate = dtpTime.MinDate = DateTime.Parse("01/01/1753");
-                dtpDate.MaxDate = dtpTime.MaxDate = DateTime.Parse("31/12/9998"); ;
-                dtpDate.Value = DateTime.Parse(dgvFixtures.SelectedRows[0].Cells[2].Value.ToString());
+                dtpDate.MaxDate = dtpTime.MaxDate = DateTime.Parse("31/12/9998");
+                try
+                {
+                    dtpDate.Value = DateTime.Parse(dgvFixtures.SelectedRows[0].Cells[2].Value.ToString());
+                }
+                catch { }
                 dtpDate.MinDate = DateTime.Now;
             }
             spnlEdit.Visible = access;
@@ -246,10 +250,14 @@ namespace Group_Project.UserControls
                     MessageBox.Show("Error: Attempted Invalid Command", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 case 1:
-                    //Unfortunately this requires that a team already has a match assigend to them before they can play... this has been TD tagged, and will be gotten back to.
-                    HometeamID = FixturesList.Where(x => x.HomeTeamName == txtHomeTeam.Text).FirstOrDefault().HomeTeamID;
-                    AwayteamID = FixturesList.Where(x => x.AwayTeamName == txtAwayTeam.Text).FirstOrDefault().AwayTeamID;
-                    Database.FixtureList.Add(LeagueID, HometeamID, AwayteamID, dtpDate.Value, dtpTime.Value);
+                    try
+                    {
+                        //Unfortunately this requires that a team already has a match assigend to them before they can play... this has been TD tagged, and will be gotten back to.
+                        HometeamID = FixturesList.Where(x => x.HomeTeamName == txtHomeTeam.Text).FirstOrDefault().HomeTeamID;
+                        AwayteamID = FixturesList.Where(x => x.AwayTeamName == txtAwayTeam.Text).FirstOrDefault().AwayTeamID;
+                        Database.FixtureList.Add(LeagueID, HometeamID, AwayteamID, dtpDate.Value, dtpTime.Value);
+                    }
+                    catch { MessageBox.Show("Impossible to add fixture. Please recheck Team Names, Capital letters are important.","Error",MessageBoxButtons.OK, MessageBoxIcon.Error); }
                     break;
                 case 2:
                     HometeamID = FixturesList.Where(x => x.HomeTeamName == txtHomeTeam.Text).FirstOrDefault().HomeTeamID;

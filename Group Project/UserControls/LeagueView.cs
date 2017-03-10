@@ -23,7 +23,7 @@ namespace Group_Project.PublicViewUserControls
         /// <param name="Teams">A Class Containing all of the league position details</param>
         public void update(List<Classes.Team> Teams)
         {
-            dgvLeaguePositions.DataSource = Teams.Select(o => new Classes.LeagueTableDisplay() { Name = o.TeamName, GP = o.Matches, W = o.GamesWon, D = o.GamesDrawn, L = o.GamesLost, GF = o.GoalsFor, GA = o.GoalsAgainst, Pts = o.Points }).ToList();
+            dgvLeaguePositions.DataSource = Teams.Select(o => new Classes.LeagueTableDisplay() { Name = o.TeamName, Goals_Played = o.Matches, Wins = o.GamesWon, Draws = o.GamesDrawn, Losses = o.GamesLost, Goals_For = o.GoalsFor, Goals_Against = o.GoalsAgainst, Points = o.Points }).ToList();
         }
         /// <summary>
         /// Code to change the colour of all the controls on the usercontrol

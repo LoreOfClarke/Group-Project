@@ -253,7 +253,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "AdminView";
-            this.Text = "AdminView";
+            this.Text = "Football Fixtures & Results";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminView_FormClosed);
             this.Load += new System.EventHandler(this.AdminView_Load);
             this.menuStrip1.ResumeLayout(false);

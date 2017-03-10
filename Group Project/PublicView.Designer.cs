@@ -137,7 +137,7 @@
             // 
             this.teamView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.teamView1.Location = new System.Drawing.Point(3, 3);
-            this.teamView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.teamView1.Margin = new System.Windows.Forms.Padding(4);
             this.teamView1.Name = "teamView1";
             this.teamView1.Size = new System.Drawing.Size(1105, 549);
             this.teamView1.TabIndex = 0;
@@ -170,7 +170,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrontPage";
-            this.Text = "Form1";
+            this.Text = "Football Fixtures & Results";
             this.Load += new System.EventHandler(this.FrontPage_Load);
             this.VisibleChanged += new System.EventHandler(this.FrontPage_VisibleChanged);
             this.menuStrip1.ResumeLayout(false);

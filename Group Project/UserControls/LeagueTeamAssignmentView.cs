@@ -80,26 +80,42 @@ namespace Group_Project.UserControls
         /// <param name="e">Event Argument</param>
         private void cmdAssign_Click(object sender, EventArgs e)
         {
+
             int TeamID = int.Parse(dgvTeams.SelectedRows[0].Cells[0].Value.ToString());
             int LeagueID = int.Parse(dgvLeagues.SelectedRows[0].Cells[0].Value.ToString());
-            Database.DatabaseConnection.dbConnect();
-            if (chkAssigned.Checked)                                    //for unassigning
+            try
             {
-                Database.TeamLeague.SetAssign(LeagueID, TeamID, 0);
+                Database.DatabaseConnection.dbConnect();
+                if (chkAssigned.Checked)                                    //for unassigning
+                {
+                    Database.TeamLeague.SetAssign(LeagueID, TeamID, 0);
+                }
+                else                                                            //for assigning
+                {
+                    if (Database.TeamLeague.CheckExists(LeagueID, TeamID))          //if a value in the database exists, change it
+                    {
+                        Database.TeamLeague.SetAssign(LeagueID, TeamID, 1);
+                    }
+                    else                                                            //otherwise create it
+                    {
+                        Database.TeamLeague.CreateAssign(LeagueID, TeamID);
+                    }
+                }
+                Database.DatabaseConnection.dbDisconnect();
+                UpdateParent(this, e);
+
             }
-            else                                                            //for assigning
-            {
-                if (Database.TeamLeague.CheckExists(LeagueID, TeamID))          //if a value in the database exists, change it
+            catch {
+                MessageBox.Show("This team still has matches/results assigned to it and cannot be removed", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (chkAssigned.Checked)                                    //for unassigning
                 {
                     Database.TeamLeague.SetAssign(LeagueID, TeamID, 1);
                 }
-                else                                                            //otherwise create it
+                else                                                            //for assigning
                 {
-                    Database.TeamLeague.CreateAssign(LeagueID, TeamID);
+                        Database.TeamLeague.SetAssign(LeagueID, TeamID, 0);
                 }
             }
-            Database.DatabaseConnection.dbDisconnect();
-            UpdateParent(this, e);
         }
         #endregion
 

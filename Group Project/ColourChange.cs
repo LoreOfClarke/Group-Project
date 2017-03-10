@@ -75,7 +75,7 @@ namespace Group_Project
                     }
                 else if (Properties.Settings.Default.ColourSetting == 2)
                 {
-                    return Color.Coral;
+                    return Color.WhiteSmoke;
                 }
                 else
                     {

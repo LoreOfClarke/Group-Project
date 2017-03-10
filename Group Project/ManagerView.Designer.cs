@@ -160,7 +160,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "ManagerView";
-            this.Text = "ManagerView";
+            this.Text = "Football Fixtures & Results";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManagerView_FormClosed);
             this.Load += new System.EventHandler(this.ManagerView_Load);
             this.menuStrip1.ResumeLayout(false);
