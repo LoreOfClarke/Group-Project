@@ -69,6 +69,7 @@ namespace Group_Project
         private void FillLeagues()
         {
             LeagueList = Database.LeagueList.Fill();
+            tscbLeague.Items.Clear();
             foreach (Classes.League lg in LeagueList)
             {
                 tscbLeague.Items.Add(lg.LeagueName);
@@ -85,6 +86,7 @@ namespace Group_Project
         private void FillTeams(int League)
         {
             TeamList = Database.TeamList.Fill(League);
+            tscbTeam.Items.Clear();
             foreach (Classes.Team tm in TeamList)
             {
                 tscbTeam.Items.Add(tm.TeamName);
@@ -130,6 +132,15 @@ namespace Group_Project
 
         #region Object Events
         /// <summary>
+        /// Oper the user guide PDF
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Argument</param>
+        private void tsmiHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("User Guide.pdf");
+        }
+        /// <summary>
         /// When the league dropdown is changed, fill the league related classes, and update their usercontrols
         /// </summary>
         /// <param name="sender">Sending Object</param>
@@ -150,14 +161,21 @@ namespace Group_Project
         /// <param name="e">Event Arguement</param>
         private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int TeamID = TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID;
-            Database.DatabaseConnection.dbConnect();
-            PlayerList = Database.TeamPlayers.Fill(TeamID);
-            FixtureList = Database.FixtureList.FillLeague(LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamID);
-            Database.DatabaseConnection.dbDisconnect();
-            teamView1.update(PlayerList, true);
-            teamView1.TeamID = TeamID;
-            fixtureView1.update(FixtureList, true, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            try
+            {
+                int TeamID = TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID;
+                Database.DatabaseConnection.dbConnect();
+                PlayerList = Database.TeamPlayers.Fill(TeamID);
+                FixtureList = Database.FixtureList.FillLeague(LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamID);
+                Database.DatabaseConnection.dbDisconnect();
+                teamView1.update(PlayerList, true);
+                teamView1.TeamID = TeamID;
+                fixtureView1.update(FixtureList, true, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            }
+            catch
+            {
+                MessageBox.Show("This team does not play in the league", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         /// <summary>
         /// on clicking the colour change form button, open the form, and show it as dialog.
@@ -213,6 +231,7 @@ namespace Group_Project
             leagueTeamAssignmentView1.colourChange();
         }
         #endregion
+
 
     }
 }

@@ -67,12 +67,19 @@ namespace Group_Project
         /// <param name="e">Event Argument</param>
         private void tscbTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Database.DatabaseConnection.dbConnect();
-            PlayerList = Database.TeamPlayers.Fill(TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
-            FixtureList = Database.FixtureList.FillLeague(LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
-            Database.DatabaseConnection.dbDisconnect();
-            teamView1.update(PlayerList, false);
-            fixtureView1.update(FixtureList,false, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            try
+            {
+                Database.DatabaseConnection.dbConnect();
+                PlayerList = Database.TeamPlayers.Fill(TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+                FixtureList = Database.FixtureList.FillLeague(LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId, TeamList.FirstOrDefault(x => x.TeamName == tscbTeam.Text).TeamID);
+                Database.DatabaseConnection.dbDisconnect();
+                teamView1.update(PlayerList, false);
+                fixtureView1.update(FixtureList, false, LeagueList.FirstOrDefault(x => x.LeagueName == tscbLeague.Text).LeagueId);
+            }
+            catch
+            {
+                MessageBox.Show("This team does not play in this league.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         /// <summary>
         /// on clicking the login button, open that form as dialog.
@@ -107,6 +114,15 @@ namespace Group_Project
         {
             colourchange();
         }
+        /// <summary>
+        /// Oper the user guide PDF
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Argument</param>
+        private void tsmiHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("User Guide.pdf");
+        }
         #endregion
 
         #region Global Updates
@@ -116,6 +132,7 @@ namespace Group_Project
         private void FillLeagues()
         {
             LeagueList = Database.LeagueList.Fill();
+            tscbLeague.Items.Clear();
             foreach (Classes.League lg in LeagueList)
             {
                 tscbLeague.Items.Add(lg.LeagueName);
@@ -129,6 +146,7 @@ namespace Group_Project
         private void FillTeams(int League)
         {
             TeamList = Database.TeamList.Fill(League);
+            tscbTeam.Items.Clear();
             foreach (Classes.Team tm in TeamList)
             {
                 tscbTeam.Items.Add(tm.TeamName);
@@ -159,6 +177,7 @@ namespace Group_Project
             teamView1.colourChange();
         }
         #endregion
+
 
     }
 }

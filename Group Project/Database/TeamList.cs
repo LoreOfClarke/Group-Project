@@ -39,7 +39,7 @@ namespace Group_Project.Database
             try
             {
                 OleDbCommand command;
-                command = new OleDbCommand("SELECT TeamFixtures.HomeTeam, TeamFixtures.GoalsFor, TeamFixtures.AwayTeam, TeamFixtures.GoalsAgainst FROM TeamFixtures WHERE(((TeamFixtures.LeagueID) = @varLeague)); ",Database.DatabaseConnection.DBConnection);
+                command = new OleDbCommand("SELECT TeamFixtures.HomeTeam, TeamFixtures.GoalsFor, TeamFixtures.AwayTeam, TeamFixtures.GoalsAgainst FROM TeamFixtures WHERE(((TeamFixtures.LeagueID) = @varLeague) AND ((TeamFixtures.Played)=True)) ; ", Database.DatabaseConnection.DBConnection);
                 command.Parameters.Add(new OleDbParameter("@varleague", League));
                 OleDbDataReader reader = command.ExecuteReader();
                 Classes.Team Home = new Classes.Team();

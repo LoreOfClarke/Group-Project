@@ -63,11 +63,18 @@ namespace Group_Project.Database
         /// <param name="TeamID">The ID of the team the player is assigned to</param>
         public static void CreateAssign(int PlayerID, int TeamID)
         {
-            OleDbCommand command;
-            command = new OleDbCommand("INSERT INTO StaffEmployed (StaffID, TeamID, Active) VALUES (@varPlayerID, @varTeamID, 1)  ", DatabaseConnection.DBConnection);
-            command.Parameters.Add(new OleDbParameter("@varPlayerID", PlayerID));
-            command.Parameters.Add(new OleDbParameter("@varTeamID", TeamID));
-            command.ExecuteNonQuery();
+            try
+            {
+                OleDbCommand command;
+                command = new OleDbCommand("INSERT INTO StaffEmployed (StaffID, TeamID, Active) VALUES (@varPlayerID, @varTeamID, 1)  ", DatabaseConnection.DBConnection);
+                command.Parameters.Add(new OleDbParameter("@varPlayerID", PlayerID));
+                command.Parameters.Add(new OleDbParameter("@varTeamID", TeamID));
+                command.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("This player is already playing for this team.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         /// <summary>
         /// Assign or unassign an existing player to a team that he has played in before, updating a new record

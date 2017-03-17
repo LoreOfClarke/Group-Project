@@ -104,6 +104,15 @@ namespace Group_Project
             ColourChangeForm.ColourChangeEvent += ColourChangeForm_ColourChangeEvent;
             ColourChangeForm.ShowDialog();
         }
+        /// <summary>
+        /// Oper the user guide PDF
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Argument</param>
+        private void tsmiHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("User Guide.pdf");
+        }
         #endregion
 
         #region Global Updates
@@ -187,8 +196,8 @@ namespace Group_Project
             fixtureView1.colourChange();
             teamView1.colourChange();
         }
-        #endregion
 
+        #endregion
 
     }
 }

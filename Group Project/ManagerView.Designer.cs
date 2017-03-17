@@ -39,6 +39,7 @@
             this.teamView1 = new Group_Project.UserControls.TeamView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.fixtureView1 = new Group_Project.UserControls.FixtureView();
+            this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -53,7 +54,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiLogin,
             this.tsmiColours,
-            this.tscbLeague});
+            this.tscbLeague,
+            this.tsmiHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1119, 29);
@@ -152,6 +154,13 @@
             this.fixtureView1.Size = new System.Drawing.Size(1111, 555);
             this.fixtureView1.TabIndex = 0;
             // 
+            // tsmiHelp
+            // 
+            this.tsmiHelp.Name = "tsmiHelp";
+            this.tsmiHelp.Size = new System.Drawing.Size(57, 25);
+            this.tsmiHelp.Text = "Help";
+            this.tsmiHelp.Click += new System.EventHandler(this.tsmiHelp_Click);
+            // 
             // ManagerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,5 +196,6 @@
         private System.Windows.Forms.ToolStripComboBox tscbLeague;
         private UserControls.FixtureView fixtureView1;
         private UserControls.TeamView teamView1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
     }
 }

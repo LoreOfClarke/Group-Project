@@ -48,6 +48,7 @@
             this.teamDetailsView1 = new Group_Project.UserControls.TeamDetailsView();
             this.tpAssignTeamToLeague = new System.Windows.Forms.TabPage();
             this.leagueTeamAssignmentView1 = new Group_Project.UserControls.LeagueTeamAssignmentView();
+            this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tpLeagueDetails.SuspendLayout();
             this.tpPasswords.SuspendLayout();
@@ -66,7 +67,8 @@
             this.tsmiLogout,
             this.tsmiColours,
             this.tscbLeague,
-            this.tscbTeam});
+            this.tscbTeam,
+            this.tsmiHelp});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1138, 27);
@@ -245,6 +247,13 @@
             this.leagueTeamAssignmentView1.Size = new System.Drawing.Size(1130, 644);
             this.leagueTeamAssignmentView1.TabIndex = 0;
             // 
+            // tsmiHelp
+            // 
+            this.tsmiHelp.Name = "tsmiHelp";
+            this.tsmiHelp.Size = new System.Drawing.Size(44, 23);
+            this.tsmiHelp.Text = "Help";
+            this.tsmiHelp.Click += new System.EventHandler(this.tsmiHelp_Click);
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,5 +302,6 @@
         private UserControls.TeamDetailsView teamDetailsView1;
         private System.Windows.Forms.TabPage tpAssignTeamToLeague;
         private UserControls.LeagueTeamAssignmentView leagueTeamAssignmentView1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
     }
 }
